@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk 'NR>=574 && NR<=620' \"/Users/robbiecarman/Nextcloud/Vibe Code Output/Graviton-Tools/index.html\")",
+      "Bash(awk -F: '$1 >= 574 && $1 <= 650')",
+      "Bash(sed -i '' 's/Free trial includes 5 exports — enough to see exactly what GradeShare can do\\\\./Free trial includes 10 exports — enough to see exactly what GradeShare can do./' \"/Users/robbiecarman/Nextcloud/Vibe Code Output/Graviton-Tools/index.html\")",
+      "Bash(awk 'NR>=150 && NR<=165' \"/Users/robbiecarman/Nextcloud/Vibe Code Output/Graviton-Tools/partners.html\")",
+      "Bash(sed -i '' '150,160d' \"/Users/robbiecarman/Nextcloud/Vibe Code Output/Graviton-Tools/partners.html\")",
+      "Bash(awk 'NR>=174 && NR<=190' \"/Users/robbiecarman/Nextcloud/Vibe Code Output/Graviton-Tools/about/index.html\")",
+      "Bash(awk 'NR>=660 && NR<=760' \"/Users/robbiecarman/Nextcloud/Vibe Code Output/Graviton-Tools/index.html\")"
+    ],
+    "additionalDirectories": [
+      "/Users/robbiecarman/Nextcloud/Vibe Code Output/Graviton-Tools"
+    ]
+  }
+}

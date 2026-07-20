@@ -1,0 +1,377 @@
+<!-- Graviton.tools — homepage concept mockup -->
+<!-- Brand DNA kept: brutalist-mono, uppercase Space Grotesk, near-black, red rgb(230,5,1) -->
+<!-- New: warm gradient headlines, glossy surfaces, Retrograde-style launcher cards (teasers) -->
+<!-- Icons are PLACEHOLDERS demonstrating "consistent slot, distinct personality" — swap for your real app icons -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>graviton.tools — concept</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#080808;
+    --surface-1:#0d0d0d;
+    --surface-2:#121212;
+    --surface-3:#181818;
+    --line:rgba(255,255,255,.08);
+    --line-bright:rgba(255,255,255,.14);
+    --text:#f4f3f2;
+    --text-dim:#9b9896;
+    --text-faint:#6a6764;
+    --red:rgb(230,5,1);
+    /* warm gradient — deliberately NOT teal, so it never reads as Retrograde */
+    --grad:linear-gradient(100deg,#ffab3d 0%,#ff3b22 32%,#e60501 58%,#ff2e6e 100%);
+    --grad-soft:linear-gradient(96deg,rgba(255,122,69,.9),rgba(230,5,1,.9),rgba(255,46,110,.9));
+    --display:'Space Grotesk',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --body:'IBM Plex Sans',system-ui,sans-serif;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(8,8,8,.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .wordmark{font-family:var(--display);font-size:19px;letter-spacing:-.01em}
+  .wordmark b{font-weight:700}
+  .wordmark span{font-weight:400;color:var(--text-dim)}
+  .wordmark i{color:var(--red);font-style:normal}
+  .nav-links{display:flex;gap:30px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  @media(max-width:640px){.nav-links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:104px 0 88px;text-align:center;overflow:hidden}
+  .hero-glow{
+    position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(60% 70% at 50% 12%,rgba(230,5,1,.22),transparent 60%),
+      radial-gradient(40% 50% at 72% 30%,rgba(255,46,110,.12),transparent 70%);
+  }
+  /* faint luminance-ramp graticule — a quiet nod to the colorist's world */
+  .hero-scope{
+    position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);
+    width:min(720px,86vw);height:2px;z-index:0;
+    background:linear-gradient(90deg,#1a1a1a,#7a7a7a 45%,#fff 50%,#7a7a7a 55%,#1a1a1a);
+    opacity:.5;
+  }
+  .hero-inner{position:relative;z-index:1}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--text-faint);margin-bottom:26px;
+  }
+  .eyebrow .dot{color:var(--red)}
+  h1.hero-h{
+    font-family:var(--display);font-weight:700;text-transform:uppercase;
+    font-size:clamp(46px,8.5vw,98px);line-height:.92;letter-spacing:-.02em;
+    margin:0 auto;max-width:14ch;
+  }
+  .grad{
+    background:var(--grad);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 28px rgba(255,46,110,.32)) drop-shadow(0 0 10px rgba(255,59,34,.28));
+  }
+  .hero-sub{
+    margin:30px auto 0;max-width:46ch;font-size:18px;color:var(--text-dim);
+  }
+
+  /* slim waitlist */
+  .waitlist{
+    margin:38px auto 0;display:flex;gap:8px;max-width:520px;
+    background:var(--surface-2);border:1px solid var(--line);
+    border-radius:12px;padding:7px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 18px 40px -24px rgba(0,0,0,.9);
+  }
+  .waitlist input{
+    flex:1;min-width:0;background:transparent;border:0;color:var(--text);
+    font-family:var(--body);font-size:15px;padding:11px 12px;
+  }
+  .waitlist input::placeholder{color:var(--text-faint)}
+  .btn-red{
+    flex:0 0 auto;border:0;cursor:pointer;
+    font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    color:#fff;padding:0 22px;border-radius:8px;
+    background:var(--red);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 6px 18px -6px rgba(230,5,1,.7);
+    transition:transform .15s,box-shadow .2s;
+  }
+  .btn-red:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 10px 24px -6px rgba(230,5,1,.85)}
+  .waitlist-note{margin:14px auto 0;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--text-faint)}
+  @media(max-width:520px){.waitlist{flex-wrap:wrap}.waitlist input{flex-basis:100%}.btn-red{flex-basis:100%;padding:12px}}
+
+  /* ---------- section header ---------- */
+  .section{padding:72px 0}
+  .sec-head{display:flex;align-items:center;gap:18px;margin-bottom:36px}
+  .sec-label{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);white-space:nowrap}
+  .sec-rule{flex:1;height:1px;background:var(--line)}
+
+  /* ---------- launcher cards (teasers) ---------- */
+  .grid-pro{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .grid-free{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  @media(max-width:760px){.grid-pro,.grid-free{grid-template-columns:1fr}}
+
+  .card{
+    position:relative;display:flex;flex-direction:column;
+    padding:26px 26px 22px;border-radius:16px;
+    background:
+      linear-gradient(180deg,rgba(255,255,255,.036),rgba(255,255,255,0) 38%),
+      var(--surface-1);
+    border:1px solid var(--line);
+    box-shadow:0 1px 0 rgba(255,255,255,.035) inset,0 24px 50px -34px rgba(0,0,0,.9);
+    transition:transform .22s ease,border-color .22s,box-shadow .22s;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(230,5,1,.45);
+    box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 30px 60px -30px rgba(230,5,1,.35);
+  }
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+
+  /* glossy icon tile — SAME format every time, DIFFERENT hue per app */
+  .icon{
+    width:56px;height:56px;
+    display:grid;place-items:center;
+  }
+  .icon img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ic-gradeshare{background:linear-gradient(150deg,#ff5e3a,#e60501)}
+  .ic-scope{background:conic-gradient(from 210deg,#ff2e6e,#ff7a45,#e60501,#ff2e6e)}
+  .ic-scaffold{background:linear-gradient(150deg,#3a3f4a,#15171c)}
+  .ic-flip{background:linear-gradient(150deg,#1d1d1d,#000)}
+  .ic-stash{background:linear-gradient(150deg,#4d8cff,#2456c8)}
+  .ic-catch{background:linear-gradient(150deg,#ff5e3a,#b3001f)}
+  .ic-reframe{background:linear-gradient(150deg,#2bd07a,#0d8a4a)}
+  .ic-duration{background:linear-gradient(150deg,#8a6bff,#4d2bd0)}
+
+  .tag{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--text-dim);padding:6px 11px;border:1px solid var(--line);border-radius:999px;
+    background:var(--surface-3);white-space:nowrap;
+  }
+  .tag.free{color:#ff8a64;border-color:rgba(230,5,1,.3)}
+  .card h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:27px;letter-spacing:-.01em;line-height:1;margin-bottom:11px}
+  .card p{color:var(--text-dim);font-size:15px;max-width:40ch}
+  .card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+  .status{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+  .more{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px}
+  .more .arrow{transition:transform .2s}
+  .card:hover .more .arrow{transform:translateX(4px)}
+  .more.g{color:var(--text-dim);transition:color .2s}
+  .card:hover .more.g{color:var(--text)}
+  .more.g .arrow{color:var(--red)}
+
+  /* compact free-tool cards */
+  .card.free-card{padding:22px 22px 18px}
+  .card.free-card .icon{width:46px;height:46px;}
+  .card.free-card h3{font-size:21px}
+  .card.free-card p{font-size:14px}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:46px 0 60px;margin-top:40px}
+  .foot-inner{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+  .foot-links{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
+  .foot-brand{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint)}
+
+  /* load motion (respecting reduced motion) */
+  @media(prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(14px);animation:up .6s ease forwards}
+    .reveal:nth-child(2){animation-delay:.06s}
+    .reveal:nth-child(3){animation-delay:.12s}
+    .reveal:nth-child(4){animation-delay:.18s}
+    @keyframes up{to{opacity:1;transform:none}}
+  }
+</style>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="wordmark"><b>graviton</b><i>.</i><span>tools</span></a>
+    <div class="nav-links">
+      <a href="index.html#pro">Products</a>
+      <a href="index.html#free">Free Tools</a>
+      <a href="#">Support</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-scope"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow"><span class="dot">●</span> &nbsp;Post-production workflow tools</div>
+    <h1 class="hero-h">The work around the work<br><span class="grad">handled</span></h1>
+    <p class="hero-sub">We make the tools for the tedious side of running a post business — structure, metadata, paperwork, promotion.</p>
+
+    <div class="waitlist">
+      <input type="text" placeholder="First name" aria-label="First name">
+      <input type="email" placeholder="your@email.com" aria-label="Email">
+      <button class="btn-red">Notify me</button>
+    </div>
+    <div class="waitlist-note">No spam. One email when it ships.</div>
+  </div>
+</header>
+
+<main>
+  <section class="section" id="pro">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-label">Professional apps</span>
+        <span class="sec-rule"></span>
+      </div>
+      <div class="grid-pro">
+
+        <a class="card reveal" href="gradeshare.html">
+          <div class="card-top">
+            <div class="icon"><img src="assets/gradeshare_128x128.png" alt="GradeShare"></div>
+            <span class="tag">Desktop · Mac &amp; Windows</span>
+          </div>
+          <h3>GradeShare</h3>
+          <p>Turn Resolve gallery stills into client-ready social layouts and contact sheets — without leaving your session.</p>
+          <div class="card-foot">
+            <span class="status">$39 · Perpetual</span>
+            <span class="more g">Learn more <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a class="card reveal" href="#">
+          <div class="card-top">
+            <div class="icon"><img src="assets/scope_128x128.png" alt="Scope"></div>
+            <span class="tag">Web · SaaS</span>
+          </div>
+          <h3>Scope</h3>
+          <p>Project orders and invoicing built for post — from first proposal to final payment, in one place.</p>
+          <div class="card-foot">
+            <span class="status">$15/mo · $150/yr</span>
+            <span class="more g">Learn more <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a class="card reveal" href="#">
+          <div class="card-top">
+            <div class="icon"><img src="assets/scaffold_128x128.png" alt="Scaffold"></div>
+            <span class="tag">Desktop · Mac &amp; Windows</span>
+          </div>
+          <h3>Scaffold</h3>
+          <p>Build, save, and deploy consistent project folder structures in seconds — solo or facility-wide.</p>
+          <div class="card-foot">
+            <span class="status">Coming soon</span>
+            <span class="more g">Learn more <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a class="card reveal" href="#">
+          <div class="card-top">
+            <div class="icon"><img src="assets/flipicon_128x128.png" alt="Flip"></div>
+            <span class="tag">Desktop · Mac &amp; Windows</span>
+          </div>
+          <h3>Flip</h3>
+          <p>Read and rewrite MOV/MP4 metadata right in the file atoms. No re-encode, no quality loss.</p>
+          <div class="card-foot">
+            <span class="status">Coming soon</span>
+            <span class="more g">Learn more <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="free">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-label">Free tools</span>
+        <span class="sec-rule"></span>
+      </div>
+      <div class="grid-free">
+
+        <a class="card free-card reveal" href="#">
+          <div class="card-top">
+            <div class="icon"><img src="assets/stash-128x128.png" alt="Stash"></div>
+            <span class="tag free">Free · Mac</span>
+          </div>
+          <h3>Stash</h3>
+          <p>Clipboard history and a batch file renamer, sitting in your menu bar.</p>
+          <div class="card-foot">
+            <span class="status">Mac utility</span>
+            <span class="more g">Download <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a class="card free-card reveal" href="#">
+          <div class="card-top">
+            <div class="icon"><img src="assets/catch-128x128.png" alt="Catch"></div>
+            <span class="tag free">Free · Browser</span>
+          </div>
+          <h3>Catch</h3>
+          <p>Auto-organizes every client file-transfer link in one place. No account.</p>
+          <div class="card-foot">
+            <span class="status">Extension</span>
+            <span class="more g">Download <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a class="card free-card reveal" href="#">
+          <div class="card-top">
+            <div class="icon"><img src="assets/reframescout-128x128.png" alt="Reframe Scout"></div>
+            <span class="tag free">Free · DCTL</span>
+          </div>
+          <h3>Reframe Scout</h3>
+          <p>Preview social crops right inside Resolve — no separate timeline needed.</p>
+          <div class="card-foot">
+            <span class="status">DaVinci Resolve</span>
+            <span class="more g">Download <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+        <a class="card free-card reveal" href="#">
+          <div class="card-top">
+            <div class="icon"><img src="assets/durationcalc-128x128.png" alt="Duration Calc"></div>
+            <span class="tag free">Free · Web</span>
+          </div>
+          <h3>Duration Calc</h3>
+          <p>Duration math across 17 frame rates, with drop-frame support.</p>
+          <div class="card-foot">
+            <span class="status">Web tool</span>
+            <span class="more g">Open tool <span class="arrow">→</span></span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-links">
+      <a href="index.html#pro">Products</a>
+      <a href="index.html#free">Free Tools</a>
+      <a href="about.html">About</a>
+      <a href="#">Support</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="refund.html">Refunds</a>
+    </div>
+    <div class="foot-brand">An Amigo Media Brand</div>
+  </div>
+</footer>

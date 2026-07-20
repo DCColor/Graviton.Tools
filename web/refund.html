@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Refund Policy — Graviton.tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Space+Grotesk:wght@300;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808; --surface: #111111; --border: #1e1e1c;
+    --border-bright: #2a2a28; --text: #e8e8e2; --text-dim: #888880;
+    --text-dimmer: #555550; --red: rgb(230,5,1);
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+    --display: 'Space Grotesk', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,8,8,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 56px;
+  }
+  .nav-logo { font-family: var(--display); font-size: 18px; font-weight: 600; letter-spacing: -0.025em; text-decoration: none; color: var(--text); }
+  .nav-logo .dot { color: var(--red); }
+  .nav-logo .ext { font-weight: 300; opacity: 0.78; }
+  .nav-back { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dimmer); text-decoration: none; }
+  .nav-back:hover { color: var(--text); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 112px 48px 96px; }
+
+  .page-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .page-label::before { content: ''; width: 4px; height: 4px; background: var(--red); display: inline-block; }
+
+  h1 { font-family: var(--display); font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px; }
+
+  .last-updated { font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.08em; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+
+  h2 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin: 48px 0 16px; }
+
+  p { color: #c8c8c2; font-weight: 400; margin-bottom: 16px; }
+
+  ul { margin: 0 0 16px 0; padding: 0; list-style: none; }
+  ul li { color: #c8c8c2; font-weight: 400; padding: 8px 0; border-top: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start; }
+  ul li::before { content: '—'; color: var(--red); flex-shrink: 0; font-family: var(--mono); font-size: 12px; margin-top: 2px; }
+  ul li:last-child { border-bottom: 1px solid var(--border); }
+
+  strong { color: var(--text); font-weight: 500; }
+
+  a { color: var(--red); text-decoration: none; }
+  main a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border-bright); }
+  main a:hover { color: var(--red); text-decoration-color: var(--red); }
+  a:hover { text-decoration: underline; }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a { color: var(--text-dimmer); text-decoration: none; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    main { padding: 96px 24px 64px; }
+    footer { flex-direction: column; gap: 16px; padding: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">graviton<span class="dot">.</span><span class="ext">tools</span></a>
+  <a href="/" class="nav-back">← Back</a>
+</nav>
+
+<main>
+  <div class="page-label">Legal</div>
+  <h1>Refund Policy</h1>
+  <p class="last-updated">Last updated: May 28, 2026</p>
+
+  <h2>14-Day Refund Window</h2>
+  <p>You may request a full refund within 14 days of your purchase date — no questions asked. To initiate a refund, email <a href="mailto:support@graviton.tools">support@graviton.tools</a> with your order number. We will respond within 1–2 business days and process the refund promptly. Refunds are issued through Paddle, our payment processor, and typically appear within 5–10 business days depending on your bank or card provider.</p>
+
+  <h2>Requests Outside the 14-Day Window</h2>
+  <p>Refund requests submitted after the 14-day window will be reviewed on a case-by-case basis. We will consider requests where:</p>
+  <ul>
+    <li>You experienced a technical issue that we were unable to resolve within a reasonable timeframe</li>
+    <li>You were charged more than once for the same product due to a billing error</li>
+    <li>The product was materially misrepresented on its product page</li>
+  </ul>
+
+  <h2>Questions Before You Buy</h2>
+  <p>If you're unsure whether a product is right for your workflow or setup, reach out before purchasing — we're happy to help. Contact us at <a href="mailto:sales@graviton.tools">sales@graviton.tools</a>.</p>
+
+</main>
+
+<footer>
+  <div>© Graviton.tools 2026 — An Amigo Media LLC Brand</div>
+  <div class="footer-links">
+    <a href="/pricing">Pricing</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="/refund">Refund Policy</a>
+    <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+  </div>
+</footer>
+
+</body>
+</html>

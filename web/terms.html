@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Terms of Service — Graviton.tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Space+Grotesk:wght@300;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808; --surface: #111111; --border: #1e1e1c;
+    --border-bright: #2a2a28; --text: #e8e8e2; --text-dim: #888880;
+    --text-dimmer: #555550; --red: rgb(230,5,1);
+    --mono: 'IBM Plex Mono', monospace; --sans: 'IBM Plex Sans', sans-serif;
+    --display: 'Space Grotesk', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.7; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,8,8,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 56px;
+  }
+  .nav-logo { font-family: var(--display); font-size: 18px; font-weight: 600; letter-spacing: -0.025em; text-decoration: none; color: var(--text); }
+  .nav-logo .dot { color: var(--red); }
+  .nav-logo .ext { font-weight: 300; opacity: 0.78; }
+  .nav-back { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dimmer); text-decoration: none; }
+  .nav-back:hover { color: var(--text); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 112px 48px 96px; }
+
+  .page-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .page-label::before { content: ''; width: 4px; height: 4px; background: var(--red); display: inline-block; }
+
+  h1 { font-family: var(--display); font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 12px; }
+
+  .last-updated { font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.08em; margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+
+  h2 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin: 48px 0 16px; }
+
+  p { color: #b0b0aa; font-weight: 300; margin-bottom: 16px; }
+
+  ul { margin: 0 0 16px 0; padding: 0; list-style: none; }
+  ul li { color: #b0b0aa; font-weight: 300; padding: 8px 0 8px 20px; border-top: 1px solid var(--border); display: block; position: relative; }
+  ul li::before { content: '—'; color: var(--red); font-family: var(--mono); font-size: 12px; position: absolute; left: 0; top: 10px; }
+  ul li:last-child { border-bottom: 1px solid var(--border); }
+
+  strong { color: var(--text); font-weight: 500; }
+
+  .callout { background: var(--surface); border: 1px solid var(--border-bright); border-left: 3px solid var(--red); padding: 20px 24px; margin: 24px 0; }
+  .callout p { margin: 0; }
+
+  a { color: var(--red); text-decoration: none; }
+  main a { color: var(--text); text-decoration: underline; text-decoration-color: var(--border-bright); }
+  main a:hover { color: var(--red); text-decoration-color: var(--red); }
+  a:hover { text-decoration: underline; }
+
+  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.08em; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a { color: var(--text-dimmer); text-decoration: none; }
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    main { padding: 96px 24px 64px; }
+    footer { flex-direction: column; gap: 16px; padding: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">graviton<span class="dot">.</span><span class="ext">tools</span></a>
+  <a href="/" class="nav-back">← Back</a>
+</nav>
+
+<main>
+  <div class="page-label">Legal</div>
+  <h1>Terms of Service</h1>
+  <p class="last-updated">Last updated: July 11, 2026</p>
+
+  <p>These Terms of Service ("Terms") govern your use of the products and services offered by Graviton.tools, a brand operated by Amigo Media LLC ("we," "us," or "our"), including GradeShare, Scope, Manifold, Flip, Scaffold, Catch, Stash, Reframe Scout, Duration Calc, and any future products. By purchasing a license, creating an account, or using any Graviton.tools product, you agree to these Terms.</p>
+
+  <div class="callout">
+    <p><strong>Plain English summary:</strong> Buy a license, use it on up to 4 machines, don't resell or reverse-engineer our software. Scope subscriptions renew automatically — cancel anytime. Refunds are available within 14 days of purchase, no questions asked — requests outside that window are reviewed case-by-case. We're not affiliated with Blackmagic Design or Adobe. Virginia law governs any disputes.</p>
+  </div>
+
+  <h2>1. Acceptance of Terms</h2>
+  <p>By accessing or using any Graviton.tools product, you confirm that you are at least 18 years old, have the authority to enter into this agreement, and agree to be bound by these Terms and our <a href="/privacy">Privacy Policy</a>. If you are using a product on behalf of a company or organization, you represent that you have authority to bind that entity to these Terms.</p>
+
+  <h2>2. Products and Licenses</h2>
+  <p>Graviton.tools offers the following types of products:</p>
+  <ul>
+    <li><strong>Desktop applications (GradeShare, Manifold, Flip, Scaffold):</strong> One-time purchase, perpetual license</li>
+    <li><strong>Browser extensions (Catch):</strong> Free — no purchase, account, or license required</li>
+    <li><strong>SaaS web applications (Scope):</strong> Subscription-based, billed monthly or annually</li>
+    <li><strong>Free tools (Stash, Reframe Scout, Duration Calc):</strong> Free to use — no purchase, account, or license required</li>
+  </ul>
+  <p>Purchasing a license grants you a personal, non-exclusive, non-transferable right to use the applicable product subject to these Terms. You do not own the software — you own a license to use it.</p>
+
+  <h2>3. License Terms — Desktop Apps</h2>
+  <p>When you purchase a license for GradeShare, Manifold, Flip, or Scaffold, you receive a personal, non-exclusive, non-transferable license to use it. Unless otherwise stated:</p>
+  <ul>
+    <li>You may install and use the product on up to <strong>4 machines</strong> for personal or commercial work</li>
+    <li>You may not resell, redistribute, sublicense, or share license keys or product files with others</li>
+    <li>You may not reverse-engineer, decompile, or modify the software beyond what is expressly permitted</li>
+    <li>You may reinstall on the same machine without consuming an additional activation — licenses are validated by hardware identifier</li>
+  </ul>
+  <p>If you exceed 4 activations, an additional license purchase is required.</p>
+  <p><strong>Computer transfers:</strong> If you sell or transfer a computer with Graviton.tools software installed, contact <a href="mailto:support@graviton.tools">support@graviton.tools</a> to deactivate that machine before the transfer. We process deactivation requests within 2 business days.</p>
+
+  <h2>4. License Terms — Scope (SaaS)</h2>
+  <p>Scope is offered on monthly and annual subscription plans. Your subscription:</p>
+  <ul>
+    <li>Begins on the date of purchase and renews automatically at the end of each billing period</li>
+    <li>Can be cancelled at any time — cancellation takes effect at the end of the current billing period, after which you retain access until expiry</li>
+    <li>Annual subscriptions are billed in full at the start of each year</li>
+    <li>Plan changes (upgrades or downgrades) take effect at the next renewal</li>
+  </ul>
+  <p>Your data remains accessible for 30 days after subscription expiry. After that period, inactive accounts and their associated data may be deleted. We will notify you by email before any data deletion occurs.</p>
+
+  <h2>5. Delivery</h2>
+  <p>All products are delivered digitally. After a successful purchase, you will receive a download link or license key by email via our delivery provider (Resend). It is your responsibility to retain access to this information. If you lose your license key, contact <a href="mailto:support@graviton.tools">support@graviton.tools</a> and we will resend it.</p>
+  <p>Scope accounts are activated immediately upon successful payment confirmation from Paddle.</p>
+
+  <h2>6. Feature Limitations</h2>
+  <p>Our paid software — the desktop apps (GradeShare, Manifold, Flip, and Scaffold) and Scope — uses output-based limitations rather than time-limited trials. You may use the full application to evaluate it; limitations apply only to the volume or scope of output until a license is purchased or a subscription is started. We believe this is a fairer way to evaluate software than artificial time pressure.</p>
+  <p>Our free tools (Stash, Reframe Scout, and Duration Calc) and the Catch browser extension are free to use with no such limitations — no purchase or license is required.</p>
+
+  <h2>7. Payments & Billing</h2>
+  <p>All payments are processed by <strong>Paddle</strong>, which acts as the Merchant of Record for all Graviton.tools transactions. By completing a purchase you also agree to Paddle's terms of service. Paddle is responsible for collecting payment, handling VAT and sales tax where applicable, and processing refunds.</p>
+  <p>Prices are listed in USD and may vary by region due to local tax requirements. We reserve the right to change prices with reasonable notice — price changes will not affect active annual subscriptions until renewal.</p>
+
+  <h2>8. Refund Policy</h2>
+  <p>You may request a full refund within 14 days of your purchase date — no questions asked. To initiate a refund, email <a href="mailto:support@graviton.tools">support@graviton.tools</a> with your order number. We will respond within 1–2 business days and process the refund promptly.</p>
+  <p>Refund requests submitted after the 14-day window will be reviewed on a case-by-case basis. We will honor requests where:</p>
+  <ul>
+    <li>You experienced a technical issue that we were unable to resolve within a reasonable timeframe</li>
+    <li>You were charged more than once for the same product due to a billing error</li>
+    <li>The product was materially misrepresented on its product page</li>
+  </ul>
+  <p>Refunds are processed through Paddle and typically appear within 5–10 business days depending on your bank or card provider. If you're unsure whether a product is right for your setup, reach out before purchasing — we're happy to help.</p>
+
+  <h2>9. Acceptable Use</h2>
+  <p>You may use Graviton.tools products for any lawful personal or commercial purpose. You agree not to:</p>
+  <ul>
+    <li>Reverse engineer, decompile, or disassemble any Graviton.tools software</li>
+    <li>Remove or alter any copyright, trademark, or proprietary notices</li>
+    <li>Use the software to develop a competing product</li>
+    <li>Share, resell, or redistribute license keys</li>
+    <li>Attempt to circumvent license validation or activation systems</li>
+    <li>Use the software in any way that violates applicable laws or regulations</li>
+  </ul>
+
+  <h2>10. Third-Party Integrations</h2>
+  <p>Several Graviton.tools products integrate with third-party software and services. The following applies to all such integrations:</p>
+  <ul>
+    <li><strong>Graviton.tools is not affiliated with, endorsed by, or in any way officially connected to Blackmagic Design or Adobe Systems.</strong> DaVinci Resolve and Adobe Premiere Pro are trademarks of their respective owners</li>
+    <li>GradeShare and Scaffold integrate with DaVinci Resolve via Blackmagic Design's publicly available scripting API, and Reframe Scout runs inside DaVinci Resolve as a DCTL. Manifold outputs a reference signal to Blackmagic DeckLink devices. Scaffold also generates Adobe Premiere Pro project files using Adobe's publicly documented format</li>
+    <li>The availability and functionality of these integrations is subject to change at any time as a result of updates to DaVinci Resolve, Adobe Premiere Pro, or their respective APIs. Graviton.tools makes no warranty that integrations will remain functional following third-party software updates</li>
+    <li>Catch integrates with third-party file delivery services (WeTransfer, Frame.io, Dropbox, and others) by reading URLs you provide. Graviton.tools is not affiliated with any of these services</li>
+    <li>Scope uses Clerk for authentication, Paddle for billing, and Resend for email delivery. Use of these services is subject to their respective terms</li>
+  </ul>
+
+  <h2>11. Intellectual Property</h2>
+  <p>All Graviton.tools products, including their source code, design, user interface, and documentation, are owned by Amigo Media LLC and protected by copyright and other intellectual property laws. These Terms do not grant you any rights to our trademarks, trade names, or brand assets.</p>
+  <p>Content you create using our products — proposals in Scope, exports from GradeShare, folder structures from Scaffold — remains your property. We claim no ownership over your work product.</p>
+
+  <h2>12. Disclaimer of Warranties</h2>
+  <p>Graviton.tools products are provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranty of any kind, express or implied. To the fullest extent permitted by law, we disclaim all warranties including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+  <p>We do not warrant that our products will be error-free, uninterrupted, or free of security vulnerabilities. We do not warrant that third-party integrations (including DaVinci Resolve, Adobe Premiere Pro, or any file delivery service) will remain compatible with our products.</p>
+
+  <h2>13. Limitation of Liability</h2>
+  <p>To the fullest extent permitted by applicable law, Amigo Media LLC / Graviton.tools shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business opportunities, arising out of or related to your use of our products — even if we have been advised of the possibility of such damages.</p>
+  <p>Our total liability to you for any claim arising from these Terms or your use of our products shall not exceed the amount you paid us in the 12 months preceding the claim.</p>
+
+  <h2>14. Termination</h2>
+  <p>We reserve the right to terminate or suspend your license or account if you materially breach these Terms, including but not limited to sharing license keys, reverse engineering our software, or using our products to harm others. We will provide notice where possible before termination.</p>
+  <p>You may terminate your use at any time by cancelling your subscription (for Scope) or ceasing use of the software. Upon termination, sections of these Terms that by their nature should survive (including intellectual property, disclaimer of warranties, and limitation of liability) will continue to apply.</p>
+
+  <h2>15. Governing Law & Disputes</h2>
+  <p>These Terms are governed by and construed in accordance with the laws of the Commonwealth of Virginia, United States, without regard to its conflict of law provisions. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts located in Virginia.</p>
+  <p>Before initiating any formal dispute, we ask that you contact us at <a href="mailto:support@graviton.tools">support@graviton.tools</a> to attempt to resolve the issue informally. We'll make a genuine effort to do the same.</p>
+
+  <h2>16. Changes to These Terms</h2>
+  <p>We may update these Terms from time to time. When we do, we'll update the "Last updated" date at the top of this page. For material changes, we'll notify active subscribers by email with at least 14 days' notice. Continued use of our products after the effective date of changes constitutes acceptance of the updated Terms.</p>
+
+  <h2>17. Contact</h2>
+  <ul>
+    <li><strong>General & licensing:</strong> <a href="mailto:support@graviton.tools">support@graviton.tools</a></li>
+    <li><strong>Privacy & data:</strong> <a href="mailto:privacy@graviton.tools">privacy@graviton.tools</a></li>
+    <li><strong>Billing, refunds & invoices:</strong> via Paddle at <a href="https://paddle.net" target="_blank">paddle.net</a></li>
+  </ul>
+</main>
+
+<footer>
+  <div>© Graviton.tools 2026 — An Amigo Media LLC Brand</div>
+  <div class="footer-links">
+    <a href="/pricing">Pricing</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="/refund">Refund Policy</a>
+    <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+  </div>
+</footer>
+
+</body>
+</html>

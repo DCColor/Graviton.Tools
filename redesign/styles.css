@@ -1,0 +1,231 @@
+/* ============================================================
+   Graviton.tools — shared stylesheet
+   Design tokens + nav + footer + content-page layout.
+   Linked by about / privacy / terms / refund (and, later,
+   index + product pages once consolidated).
+   ============================================================ */
+
+:root{
+  --bg:#080808;
+  --surface-1:#0d0d0d;
+  --surface-2:#121212;
+  --surface-3:#181818;
+  --line:rgba(255,255,255,.08);
+  --line-bright:rgba(255,255,255,.14);
+  --text:#f4f3f2;
+  --text-body:#cdcac7;
+  --text-dim:#9b9896;
+  --text-faint:#6a6764;
+  --red:rgb(230,5,1);
+  /* warm headline gradient — amber → red → magenta */
+  --grad:linear-gradient(100deg,#ffab3d 0%,#ff3b22 32%,#e60501 58%,#ff2e6e 100%);
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --body:'IBM Plex Sans',system-ui,sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+.grad{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 28px rgba(255,46,110,.32)) drop-shadow(0 0 10px rgba(255,59,34,.28));
+}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,8,8,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+.wordmark{font-family:var(--display);font-size:19px;letter-spacing:-.01em}
+.wordmark b{font-weight:700}
+.wordmark span{font-weight:400;color:var(--text-dim)}
+.wordmark i{color:var(--red);font-style:normal}
+.nav-links{display:flex;gap:30px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+@media(max-width:640px){.nav-links{gap:18px;font-size:11px}}
+
+/* ---------- content-page header ---------- */
+.page-hero{
+  position:relative;overflow:hidden;
+  padding:72px 0 34px;border-bottom:1px solid var(--line);
+}
+.page-hero::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(50% 70% at 18% 0%,rgba(230,5,1,.16),transparent 62%);
+}
+.page-hero .inner{position:relative;z-index:1}
+.page-hero .eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-faint);margin-bottom:18px;
+}
+.page-hero .eyebrow .dot{color:var(--red)}
+.page-hero h1{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(38px,6vw,64px);line-height:.96;letter-spacing:-.02em;
+}
+.page-hero .updated{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  color:var(--text-faint);margin-top:18px;
+}
+
+/* ---------- long-form content ---------- */
+.content{max-width:760px;margin:0 auto;padding:52px 28px 88px}
+.content > * + *{margin-top:18px}
+.content h2{
+  font-family:var(--display);font-weight:700;text-transform:uppercase;
+  font-size:clamp(22px,3vw,30px);letter-spacing:-.01em;
+  margin-top:48px;margin-bottom:6px;color:var(--text);
+}
+.content h3{
+  font-family:var(--display);font-weight:600;font-size:19px;
+  margin-top:30px;margin-bottom:4px;color:var(--text);
+}
+.content p,.content li{color:var(--text-body);font-size:16px}
+.content ul,.content ol{padding-left:22px}
+.content li+li{margin-top:8px}
+.content a{color:var(--red);text-decoration:underline;text-underline-offset:2px}
+.content a:hover{filter:brightness(1.25)}
+.content strong{color:var(--text);font-weight:600}
+.content hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+/* mono "label" for section eyebrows inside content, if used */
+.content .label{
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--red);display:block;margin-top:40px;
+}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--line);padding:46px 0 60px;margin-top:40px}
+.foot-inner{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.foot-links{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim)}
+.foot-links a{transition:color .2s}
+.foot-links a:hover{color:var(--text)}
+.foot-brand{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint)}
+
+/* ---------- section structure (about + reusable) ---------- */
+.section{margin-bottom:80px;padding-bottom:80px;border-bottom:1px solid var(--line)}
+.section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.section-label{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:16px;display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';width:4px;height:4px;background:var(--red);display:inline-block}
+/* specificity beats .content h2 (0,1,1) via element+class (0,1,1) placed later */
+h2.section-heading,h1.section-heading{
+  font-family:var(--display);font-size:clamp(28px,4vw,42px);font-weight:700;
+  letter-spacing:-.02em;line-height:1.1;margin-bottom:32px;
+  text-transform:none;color:var(--text);margin-top:0;
+}
+
+/* ---------- pillars 2×2 value grid ---------- */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:40px}
+.pillar{background:var(--surface-1);border:1px solid var(--line);padding:28px 32px}
+.pillar-num{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--red);margin-bottom:12px}
+.pillar-title{font-family:var(--display);font-size:17px;font-weight:600;color:var(--text);margin-bottom:10px;letter-spacing:-.01em}
+.pillar-body{font-family:var(--body);font-size:14px;color:var(--text-dim);font-weight:300;line-height:1.7}
+
+/* about page wider column (overrides .content max-width) */
+.about-main{max-width:900px}
+
+@media(max-width:768px){
+  .pillars{grid-template-columns:1fr}
+}
+/* paragraph spacing inside .section (nested, not direct .content children) */
+.section p+p{margin-top:16px}
+
+/* ---------- legal / long-form document components ---------- */
+
+/* bordered list with em-dash marker (legal pages) */
+.content ul{padding-left:0;margin-bottom:16px;list-style:none}
+.content ul li{
+  color:var(--text-body);padding:8px 0;
+  border-top:1px solid var(--line);
+  display:flex;gap:12px;align-items:flex-start;
+}
+.content ul li::before{
+  content:'—';color:var(--red);flex-shrink:0;
+  font-family:var(--mono);font-size:12px;margin-top:2px;
+}
+.content ul li:last-child{border-bottom:1px solid var(--line)}
+/* override the generic li+li spacing — borders provide separation */
+.content ul li+li{margin-top:0}
+
+/* numbered list with red auto-counter */
+.content ol{padding-left:0;margin-bottom:16px;list-style:none;counter-reset:ol-counter}
+.content ol li{
+  color:var(--text-body);padding:12px 0 12px 32px;
+  border-top:1px solid var(--line);
+  display:block;position:relative;
+}
+.content ol li:last-child{border-bottom:1px solid var(--line)}
+.content ol li::before{
+  content:counter(ol-counter) '.';counter-increment:ol-counter;
+  color:var(--red);font-family:var(--mono);font-size:11px;
+  position:absolute;left:0;top:14px;
+}
+.content ol li+li{margin-top:0}
+
+/* inline code */
+.content code{
+  background:var(--surface-1);border:1px solid var(--line);
+  padding:.1em .4em;border-radius:3px;
+  font-size:.88em;font-family:var(--mono);color:var(--text-dim);
+}
+
+/* definition lists */
+.content dl{margin:0 0 16px}
+.content dt{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-dim);
+  margin-top:20px;margin-bottom:4px;
+}
+.content dd{
+  color:var(--text-body);padding-left:0;margin-left:0;
+  border-top:1px solid var(--line);padding-top:8px;
+}
+
+/* data tables */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0 24px;font-family:var(--mono);font-size:11px}
+.data-table th{
+  text-align:left;padding:10px 16px;color:var(--text-faint);
+  letter-spacing:.12em;text-transform:uppercase;
+  border-bottom:1px solid var(--line-bright);font-weight:400;
+}
+.data-table td{
+  padding:12px 16px;color:var(--text-body);
+  border-bottom:1px solid var(--line);
+  vertical-align:top;font-family:var(--body);font-size:13px;
+}
+.data-table tr:last-child td{border-bottom:none}
+
+/* callout box */
+.callout{
+  background:var(--surface-1);border:1px solid var(--line-bright);
+  border-left:3px solid var(--red);padding:20px 24px;margin:24px 0;
+}
+.callout p{margin:0}
+
+/* product-section card */
+.product-section{margin:32px 0;padding:28px;background:var(--surface-1);border:1px solid var(--line)}
+.product-section h3{margin-top:0}
+.product-section p+p{margin-top:16px}
+
+/* paragraph spacing inside .content nested containers */
+.content p+p{margin-top:16px}

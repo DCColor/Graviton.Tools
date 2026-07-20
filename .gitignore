@@ -1,0 +1,33 @@
+# ---- Secrets (NEVER commit) ----
+**/.env
+**/.env.*
+*.env
+.dev.vars
+**/private.key
+**/*.key
+
+# ---- Third-party / reference material (not ours to version) ----
+Retrograde Example/
+
+# ---- Source assets & large binaries ----
+source/
+*.psd
+*.ai
+*.sketch
+*.zip
+
+# ---- Dependencies / build ----
+node_modules/
+dist/
+.cache/
+.wrangler/
+
+# ---- OS / editor cruft ----
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+*.swp
+.idea/
+.vscode/

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Privacy Notice — Graviton.tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="wordmark"><b>graviton</b><i>.</i><span>tools</span></a>
+    <div class="nav-links">
+      <a href="index.html#pro">Products</a>
+      <a href="index.html#free">Free Tools</a>
+      <a href="#">Support</a>
+    </div>
+  </div>
+</nav>
+<header class="page-hero"><div class="wrap inner">
+  <div class="eyebrow"><span class="dot">●</span>&nbsp; Legal</div>
+  <h1>Privacy Notice</h1>
+  <div class="updated">Last updated: July 11, 2026</div>
+</div></header>
+
+<main class="content">
+  <p>Graviton.tools (an Amigo Media LLC brand) builds workflow tools for post-production professionals. We take your privacy seriously and have written this policy in plain English. Here's exactly what we collect, why we collect it, and what we do — and don't do — with it.</p>
+
+  <div class="callout">
+    <p><strong>The short version:</strong> We collect the minimum data necessary to run our products. We don't sell your data. We don't share it with third parties except the infrastructure providers listed below. Desktop apps, browser extensions, and our free tools keep your data on your device — or don't collect it at all — so we never see it. Our SaaS product (Scope) stores data server-side, with sensitive fields encrypted at rest.</p>
+  </div>
+
+  <h2>1. Who We Are</h2>
+  <p>Graviton.tools is a brand operated by Amigo Media LLC, based in the United States. When this policy says "we," "us," or "our," it means Amigo Media LLC / Graviton.tools. Questions about this policy can be directed to <a href="mailto:privacy@graviton.tools">privacy@graviton.tools</a>.</p>
+
+  <h2>2. Our Products and Their Data Models</h2>
+  <p>Different Graviton products handle data very differently. Here's what each one does:</p>
+
+  <div class="product-section">
+    <h3>Scope — SaaS Web Application</h3>
+    <p>Scope is our only product that stores data on our servers. It collects and stores the following to provide its service:</p>
+    <dl>
+      <dt>Account data</dt>
+      <dd>Email address, user ID, industry pack selection, and account preferences such as theme, billing mode, and branding settings. Authentication is handled by Clerk using email one-time passcodes (OTP) — we do not store passwords.</dd>
+      <dt>Business data you create</dt>
+      <dd>Proposals and project scopes (including section and block content across overview, specs, schedule, fees, optional services, and terms), client information, scheduling milestones, library items, tags, optional service selections, and signature records.</dd>
+      <dt>Client data you input</dt>
+      <dd>Names, email addresses, and company details of clients you create proposals for.</dd>
+      <dt>Branding assets</dt>
+      <dd>Logo files you upload and display preferences. Logos are stored in Cloudflare R2 and served through our own proxy endpoint — direct storage URLs are never exposed.</dd>
+      <dt>Client-facing documents</dt>
+      <dd>Scopes you publish to clients are made available through unguessable URL tokens. Anyone with the link can view and optionally sign the scope; we record signature details (signer name, email, IP address, and timestamp) as part of the signed document, both to confirm the signature and to provide evidence of the act of signing.</dd>
+      <dt>Operational data</dt>
+      <dd>Audit logs (including IP addresses associated with sensitive actions), document state changes, email send records, and signature confirmations.</dd>
+    </dl>
+    <p>Sensitive fields are encrypted at the application level using AES-256-GCM. All data is transmitted over HTTPS/TLS. Row-level security ensures users can only access their own data.</p>
+  </div>
+
+  <div class="product-section">
+    <h3>GradeShare — Desktop Application</h3>
+    <p>GradeShare is local-first by design. All of your project data is stored exclusively on your computer in the app's local application support directory and is never transmitted to Graviton.tools, Blackmagic Design, or any third party. This includes:</p>
+    <ul>
+      <li>Connection settings for your local DaVinci Resolve instance</li>
+      <li>Album selections, layouts, contact sheets, social composites, and export presets you create</li>
+      <li>Cached thumbnails and exported stills generated during a session (JPEG, PNG, TIFF, AVIF, HDR JPEG / JPEGR)</li>
+      <li>Color science settings, peak-nit overrides, platform preferences, and UI state</li>
+    </ul>
+    <p>GradeShare communicates with DaVinci Resolve exclusively through Blackmagic Design's official local scripting API, via a Python helper process bundled inside the app. All of this communication happens on your machine — nothing about your projects, timelines, stills, grades, or PowerGrades is sent over the network.</p>
+    <p>Image processing and export — including HDR JPEG (JPEGR) and AVIF generation — runs entirely on your computer using FFmpeg and libultrahdr binaries that ship inside the app. Source DPX stills and rendered exports never leave your machine as part of these operations.</p>
+    <p>GradeShare makes network requests in only three situations:</p>
+    <ol>
+      <li><strong>License activation and periodic validation</strong> (paid users only) — GradeShare sends your license key and a per-install machine identifier to our license server at <code>license.graviton.tools</code> to confirm validity and to enforce the per-customer machine limit. The machine identifier is a random UUID generated on first launch and stored in the app's settings file — it is not a hardware fingerprint and does not identify your computer to anyone outside our license system. We do not receive your Resolve project data, stills, PowerGrades, or any other content during this process. Trial installations do not trigger license calls.</li>
+      <li><strong>Update checks</strong> — GradeShare may periodically check for new versions. This request returns version metadata only and includes no information about your projects or usage.</li>
+      <li><strong>Purchases</strong> — if you buy GradeShare, the purchase flow is handled by Paddle as our Merchant of Record (see §4 below). The Paddle checkout opens in your browser, not inside the app. After purchase, your license key is delivered by email via Resend.</li>
+    </ol>
+    <p>Exported images are written to the destination folder you specify and are never uploaded by GradeShare. If you uninstall the app, all local data is removed with it; your license record on our server is retained until you (or we) deactivate the associated machines or revoke the key — contact us if you want it deleted.</p>
+  </div>
+
+  <div class="product-section">
+    <h3>Scaffold — Desktop Application</h3>
+    <p>Scaffold is local-first by design. All of your data is stored exclusively on your computer — either in the app's local application support directory or inside the project folders you create on disk. This includes:</p>
+    <ul>
+      <li>Project templates, folder chunks, and naming patterns</li>
+      <li>Project records, lifecycle state, and folder trees Scaffold has created on disk</li>
+      <li>Inventory scan results, MediaInfo metadata, and DCP/IMF package detection results</li>
+      <li>Branding assets you upload (logos, custom intro text) for PDF reports</li>
+      <li>NLE integration settings, including DaVinci Resolve connection profiles</li>
+      <li>App preferences, UI state, and settings</li>
+    </ul>
+    <p>Files Scaffold writes for you — project folders, PDF reports, ZIP archives, and NLE projects — are written to the locations you specify and are never uploaded. Project folders and reports you've created remain on disk if you uninstall Scaffold — they belong to you. We have no copy of any of this data on any server.</p>
+    <p>Scaffold communicates with DaVinci Resolve through Blackmagic Design's official local scripting API, and generates Premiere Pro project files directly on disk. If you configure Scaffold to connect to a Resolve instance on another machine in your facility, that communication occurs over your local network only — not the public internet.</p>
+    <p>Scaffold makes network requests in only two situations: (1) <strong>License validation</strong> (paid users only) — a license key and machine identifier sent to our license server to confirm validity. No project data, folder structures, or inventory results are transmitted. Trial installations do not trigger license calls. (2) <strong>Update checks</strong> — version metadata only, no project or usage information.</p>
+
+    <h3>Scaffold — Optional AI Descriptions</h3>
+    <p>Scaffold has an opt-in feature that uses the Anthropic API to generate descriptions for folders and files during inventory scans. This feature is off by default and requires explicit confirmation — including a cost confirmation — every time it is used. When enabled:</p>
+    <ul>
+      <li>Folder and file names and basic metadata (type, codec) are sent to the Anthropic API using your own API key, which you provide in Settings</li>
+      <li>Scaffold does not send the contents of your media files</li>
+      <li>Requests go directly from your machine to the Anthropic API — Graviton.tools does not proxy, log, or retain these requests</li>
+      <li>Anthropic's handling of API requests is governed by their own privacy and data usage policies</li>
+    </ul>
+    <p>If you do not enable this feature, Scaffold makes no calls to the Anthropic API whatsoever.</p>
+  </div>
+
+  <div class="product-section">
+    <h3>Flip — Desktop Application</h3>
+    <p>Flip is a local-first video metadata editor for MOV and MP4 files. All of your data is stored exclusively on your computer — either in the app's local settings file (<code>~/Library/Application Support/Flip/settings.json</code> on macOS, the equivalent <code>%APPDATA%\Flip</code> location on Windows) or inside the video files you choose to edit. This includes:</p>
+    <ul>
+      <li>App preferences, UI state, and recent file history</li>
+      <li>Saved audio configuration presets (named track layouts you create for reuse)</li>
+      <li>Per-install machine identifier (random UUID, used only for license activation)</li>
+      <li>License key and activation state, if you have purchased a license</li>
+    </ul>
+    <p>The video files you edit — and any metadata, chapter markers, or audio track configurations you write to them — remain on your machine in the locations you specify. Flip never uploads, copies, or transmits the contents of your video files to any server.</p>
+    <p>All video processing — metadata reading and writing, audio peak/average level scanning, chapter marker encoding, and any other file operations — runs entirely on your computer using FFmpeg binaries that ship inside the app. The optional video preview player loads files directly from your local disk through a private in-app protocol (<code>flip-file://</code>) — these requests never leave your machine and are not routed through any network.</p>
+    <p>Flip makes network requests in only three situations:</p>
+    <ol>
+      <li><strong>License activation and periodic validation</strong> (paid users only) — Flip sends your license key and a per-install machine identifier to our license server at <code>license.graviton.tools</code> to confirm validity and to enforce the per-customer machine limit. The machine identifier is a random UUID generated on first launch and stored in the app's settings file — it is not a hardware fingerprint and does not identify your computer to anyone outside our license system. We do not receive your video files, metadata, chapter markers, or any other content during this process. Trial installations (the first 10 writes) do not trigger license calls.</li>
+      <li><strong>Update checks</strong> — Flip may periodically check for new versions. This request returns version metadata only and includes no information about your files or usage.</li>
+      <li><strong>Purchases</strong> — if you buy Flip, the purchase flow is handled by Paddle as our Merchant of Record (see §4 below). The Paddle checkout opens in your browser, not inside the app. After purchase, your license key is delivered by email via Resend.</li>
+    </ol>
+    <p>If you uninstall the app, all local data (settings, presets, machine identifier) is removed with it; the video files you edited remain on your disk untouched. Your license record on our server is retained until you (or we) deactivate the associated machines or revoke the key — contact us if you want it deleted.</p>
+  </div>
+
+  <div class="product-section">
+    <h3>Manifold — Desktop Application</h3>
+    <p>Manifold is a local-first Mac reference player. All of your data — playback preferences, layout and scope configurations, display and output settings, live-stream connection details, and recent-file history — is stored exclusively on your computer in the app's local application support directory and is never transmitted to Graviton.tools or any third party. This includes:</p>
+    <ul>
+      <li>The media files you open and any recent-file history</li>
+      <li>HDR handling, color science, scope, and visualization preferences</li>
+      <li>SDI / Blackmagic DeckLink output settings</li>
+      <li>Live-stream connection details (NDI, SRT, and WHEP sources) you configure</li>
+      <li>Per-install machine identifier (random UUID, used only for license activation), and license key and activation state if you have purchased a license</li>
+      <li>App preferences and UI state</li>
+    </ul>
+    <p>The media files you play — and any reference signal Manifold sends to a calibrated display over SDI via a Blackmagic DeckLink device — stay on your machine and your local hardware; nothing about your media is uploaded. When you monitor a live feed (NDI, SRT, or WHEP), Manifold connects directly to the source you specify; that traffic does not pass through any Graviton.tools server. Sending a file to Flip for metadata editing is a local hand-off between the two apps on your machine.</p>
+    <p>Manifold makes network requests in only three situations:</p>
+    <ol>
+      <li><strong>License activation and periodic validation</strong> (paid users only) — Manifold sends your license key and a per-install machine identifier to our license server at <code>license.graviton.tools</code> to confirm validity and to enforce the per-customer machine limit. The machine identifier is a random UUID generated on first launch — it is not a hardware fingerprint. We do not receive your media, metadata, or any other content during this process. Trial installations do not trigger license calls.</li>
+      <li><strong>Update checks</strong> — Manifold may periodically check for new versions. This request returns version metadata only and includes no information about your media or usage.</li>
+      <li><strong>Purchases</strong> — if you buy Manifold, the purchase flow is handled by Paddle as our Merchant of Record (see §4 below). The Paddle checkout opens in your browser, not inside the app. After purchase, your license key is delivered by email via Resend.</li>
+    </ol>
+    <p>If you uninstall the app, all local data is removed with it; the media files you played remain on your disk untouched. Your license record on our server is retained until you (or we) deactivate the associated machines or revoke the key — contact us if you want it deleted.</p>
+  </div>
+
+  <div class="product-section">
+    <h3>Catch — Browser Extension</h3>
+    <p>Catch is local-first by design. All of your data — links, clients, projects, notes, status, retention settings — is stored exclusively in your browser using Chrome's <code>storage.local</code> API. It lives on your device and is never transmitted to Graviton.tools, Google, or any third party. This includes:</p>
+    <ul>
+      <li>The URLs you save</li>
+      <li>Client and project names you create</li>
+      <li>Descriptions, notes, or labels you add</li>
+      <li>Visited / downloaded status, expiry dates, and retention preferences</li>
+      <li>CSV exports you generate (written to your local Downloads folder, never uploaded)</li>
+    </ul>
+    <p>Catch makes network requests in only one situation: <strong>Link status checks</strong> — when verifying a link is still active, your browser fetches that URL directly from the file-hosting service. This request goes from your computer to that third party and does not pass through any Graviton.tools server.</p>
+    <p><strong>Permissions Catch requests and why:</strong></p>
+    <dl>
+      <dt><code>storage</code></dt>
+      <dd>To save your data locally in your browser.</dd>
+      <dt><code>activeTab</code></dt>
+      <dd>So you can save the URL of the current tab when you click the icon.</dd>
+      <dt><code>contextMenus</code></dt>
+      <dd>To let you right-click a link on any page and save it.</dd>
+      <dt><code>alarms</code></dt>
+      <dd>To schedule periodic background checks for expiring links.</dd>
+      <dt><code>host_permissions (&lt;all_urls&gt;)</code></dt>
+      <dd>Required to ping URLs you've saved to verify they're still active. Catch does not read page content, monitor your browsing, or track which sites you visit.</dd>
+    </dl>
+  </div>
+
+  <div class="product-section">
+    <h3>Stash, Reframe Scout &amp; Duration Calc — Free Tools</h3>
+    <p>Our free tools collect no personal data and require no account, login, or license. None of them transmit anything to Graviton.tools.</p>
+    <dl>
+      <dt>Stash — Mac Utility</dt>
+      <dd>Stash is local-first. Your clipboard history (up to 20 items), pinned items, and batch-renamer settings live exclusively on your Mac and are never transmitted to Graviton.tools or anyone else. There is no account and no license. Uninstalling the app removes its local data.</dd>
+      <dt>Reframe Scout — DaVinci Resolve DCTL</dt>
+      <dd>Reframe Scout is a free DCTL (color transform) that runs entirely inside DaVinci Resolve on your machine. It is distributed as a file you download and makes no network requests, collects no data, and sends nothing to Graviton.tools.</dd>
+      <dt>Duration Calc — Web Tool</dt>
+      <dd>Duration Calc runs entirely in your browser at <code>graviton.tools/calc</code>. Calculations happen on your device; we do not collect, store, or transmit anything you enter. Standard anonymized website analytics (see §5) apply as they do to the rest of the site.</dd>
+    </dl>
+  </div>
+
+  <h2>3. Waitlist &amp; Contact Forms</h2>
+  <p>When you sign up for product notifications or contact us, we collect your first name, last name, and email address. This information is used only to send you product updates you've requested, or to respond to your support question. It is never shared with third parties or used for advertising. Waitlist addresses are retained until you unsubscribe or request removal.</p>
+
+  <h2>4. Payments &amp; Billing</h2>
+  <p>All payments are processed by <strong>Paddle</strong>, our payment provider and Merchant of Record. This means Paddle — not us — handles your billing information, payment methods, and payment compliance (PCI-DSS). Your credit card number and sensitive financial details are never transmitted to or stored on our servers.</p>
+  <p>When you complete a purchase, Paddle collects your payment details and billing information according to their own <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener">privacy policy</a>. We receive only the information needed to deliver and support your license: your email address, the product purchased, transaction reference, and country. We do not receive your full card number, CVV, or full billing address.</p>
+  <p>For refunds, billing questions, or invoice changes, contact Paddle directly. For license, support, or product questions, contact Graviton.tools.</p>
+
+  <h2>5. Website Analytics</h2>
+  <p>Graviton.tools uses Cloudflare's built-in analytics, which collects anonymized traffic data (page views, general geographic region, browser type). No cookies are set for analytics purposes. Individual users are not tracked or identified.</p>
+
+  <h2>6. Cookies</h2>
+  <p>Graviton.tools does not use advertising or tracking cookies. Cloudflare may set functional cookies for security and performance purposes. Scope may use session cookies for authentication. We do not use third-party advertising networks or tracking pixels.</p>
+
+  <h2>7. Our Infrastructure &amp; Sub-Processors</h2>
+  <p>For <strong>Scope</strong>, we use the following services:</p>
+  <table class="data-table">
+    <thead>
+      <tr><th>Service</th><th>Purpose</th><th>Data Involved</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cloudflare Pages &amp; Workers</td><td>Hosting and backend API</td><td>Application code, request routing</td></tr>
+      <tr><td>Neon (PostgreSQL)</td><td>Database</td><td>All structured application data</td></tr>
+      <tr><td>Cloudflare R2</td><td>Object storage</td><td>Logo uploads, served through our own proxy endpoint</td></tr>
+      <tr><td>Clerk</td><td>Authentication (email OTP only)</td><td>Email addresses, session tokens, login metadata</td></tr>
+      <tr><td>Resend</td><td>Transactional email</td><td>Email addresses; used for sign-in codes, signature confirmations, and product notifications</td></tr>
+      <tr><td>Paddle</td><td>Payment processing &amp; subscription billing</td><td>Billing details, subscription state (Merchant of Record)</td></tr>
+      <tr><td>Monday.com</td><td>Waitlist management</td><td>Name and email from waitlist signups</td></tr>
+    </tbody>
+  </table>
+
+  <p>For <strong>GradeShare</strong>, <strong>Scaffold</strong>, <strong>Flip</strong>, and <strong>Manifold</strong> (paid desktop apps), the only sub-processors involved in their normal operation are:</p>
+  <table class="data-table">
+    <thead>
+      <tr><th>Service</th><th>Purpose</th><th>Data Involved</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Cloudflare Workers &amp; KV</td><td>License activation, validation, and revocation at <code>license.graviton.tools</code></td><td>License key, customer email, per-install machine identifier (random UUID), activation timestamps</td></tr>
+      <tr><td>Paddle</td><td>Payment processing for purchases</td><td>Billing details, transaction state (Merchant of Record)</td></tr>
+      <tr><td>Resend</td><td>License key delivery by email after purchase</td><td>Email address, license key</td></tr>
+      <tr><td>Monday.com</td><td>Waitlist management</td><td>Name and email from waitlist signups, when applicable</td></tr>
+    </tbody>
+  </table>
+  <p>None of GradeShare, Scaffold, Flip, or Manifold transmits project data, grades, stills, inventory results, video file contents, metadata edits, or any other creative content to any sub-processor at any time.</p>
+
+  <h2>8. What We Don't Do</h2>
+  <ul>
+    <li>We do not sell, share, or rent your data to third parties</li>
+    <li>We do not use analytics, telemetry, or tracking inside our desktop apps or browser extensions</li>
+    <li>We do not collect hardware fingerprints — machine identifiers are random UUIDs generated locally</li>
+    <li>We do not scan your browsing history or active tabs</li>
+    <li>We do not read the content of pages you visit</li>
+    <li>We do not require an account, login, or license to use Catch</li>
+    <li>We do not use your contact information for advertising</li>
+    <li>We do not transmit anything to the Anthropic API unless you have explicitly enabled and confirmed the AI descriptions feature in Scaffold</li>
+    <li>We do not access, view, or store the contents of your DaVinci Resolve projects, stills, PowerGrades, video files, or any other media you work with in GradeShare, Scaffold, Flip, or Manifold</li>
+  </ul>
+
+  <h2>9. Data Retention &amp; Your Rights</h2>
+  <p>You can delete your documents, clients, and branding assets at any time from within Scope. To request full account deletion, contact <a href="mailto:privacy@graviton.tools">privacy@graviton.tools</a> — we will remove your data from active systems within 30 days, subject to legal retention obligations such as billing records.</p>
+  <p>For GradeShare, Scaffold, Flip, and Manifold, all project data, presets, and edited files are stored locally and can be deleted by uninstalling the application (or, for files you've edited, by deleting them yourself). Your license record on our license server (license key, email, machine identifiers, activation history) is retained for the lifetime of the license so we can enforce machine limits and support you. You can ask us to deactivate individual machines or fully delete your license record by contacting <a href="mailto:privacy@graviton.tools">privacy@graviton.tools</a>.</p>
+  <p>For Stash, Reframe Scout, and Duration Calc, there is nothing on our servers to delete — Stash's data lives on your Mac, Reframe Scout runs inside DaVinci Resolve, and Duration Calc runs in your browser. Removing them (or clearing your browser) removes any local data.</p>
+  <p>For Catch, you can export all data at any time via CSV export, or delete it by clearing the extension's storage in Chrome's settings or uninstalling Catch. To request deletion of any waitlist data associated with your email, contact <a href="mailto:privacy@graviton.tools">privacy@graviton.tools</a>.</p>
+  <p>For payment-related data (billing history, invoices), contact Paddle directly as they are the data controller for that information.</p>
+
+  <h2>10. Children's Privacy</h2>
+  <p>Our products are not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal information, contact us at <a href="mailto:privacy@graviton.tools">privacy@graviton.tools</a> and we will delete it promptly.</p>
+
+  <h2>11. Changes to This Policy</h2>
+  <p>We may update this policy from time to time. When we do, we'll update the "Last updated" date at the top of this page. For significant changes, we'll notify active users and waitlist subscribers by email.</p>
+
+  <h2>12. Contact</h2>
+  <ul>
+    <li><strong>Product and licensing support:</strong> <a href="mailto:support@graviton.tools">support@graviton.tools</a></li>
+    <li><strong>Privacy questions and data deletion:</strong> <a href="mailto:privacy@graviton.tools">privacy@graviton.tools</a></li>
+    <li><strong>Billing, refunds, invoices, tax:</strong> via Paddle at <a href="https://paddle.net" target="_blank" rel="noopener">paddle.net</a></li>
+  </ul>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-links">
+      <a href="index.html#pro">Products</a>
+      <a href="index.html#free">Free Tools</a>
+      <a href="about.html">About</a>
+      <a href="#">Support</a>
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="refund.html">Refunds</a>
+    </div>
+    <div class="foot-brand">An Amigo Media LLC Brand</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Color Timecode Duration Calculator</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0d0d0f;
+    --surface: #141417;
+    --surface2: #1c1c21;
+    --border: #2a2a32;
+    --border-bright: #3e3e4a;
+    --accent: #e8c547;
+    --accent2: #47a8e8;
+    --text: #d4d4dc;
+    --text-dim: #787884;
+    --text-dimmer: #44444e;
+    --green: #47c878;
+    --red: #e84747;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 64px;
+  }
+
+  header {
+    width: 100%;
+    max-width: 820px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  header h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text);
+  }
+
+  header .version {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dimmer);
+    letter-spacing: 0.1em;
+  }
+
+  .main {
+    width: 100%;
+    max-width: 820px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .panel-header {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-header::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .panel-header.blue::before { background: var(--accent2); }
+  .panel-header.green::before { background: var(--green); }
+
+  .panel-body {
+    padding: 20px;
+  }
+
+  /* Timecode input */
+  .tc-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 16px;
+  }
+
+  .tc-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    width: 90px;
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  .tc-input-group {
+    display: flex;
+    align-items: center;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    flex: 1;
+    transition: border-color 0.15s;
+  }
+
+  .tc-input-group:focus-within {
+    border-color: var(--accent);
+  }
+
+  .tc-input-group.tgt-group:focus-within {
+    border-color: var(--accent2);
+  }
+
+  .tc-field {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text);
+    text-align: center;
+    width: 56px;
+    padding: 10px 4px;
+    -moz-appearance: textfield;
+  }
+
+  .tc-field::-webkit-outer-spin-button,
+  .tc-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .tc-sep {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    color: var(--text-dimmer);
+    padding: 0 1px;
+    user-select: none;
+  }
+
+  .tc-sep.drop-sep { color: var(--accent); }
+  .tc-sep.tgt-drop-sep { color: var(--accent2); }
+
+  /* Frame rate selectors */
+  .fr-group-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .fr-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .fr-pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 5px 9px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.1s;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .fr-pill:hover {
+    border-color: var(--border-bright);
+    color: var(--text);
+  }
+
+  .fr-pill.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+
+  .fr-pill.tgt-active {
+    background: var(--accent2);
+    border-color: var(--accent2);
+    color: #000;
+    font-weight: 600;
+  }
+
+  .fr-pill.drop { border-style: dashed; }
+
+  /* Divider inside panel */
+  .panel-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+
+  /* Results */
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .result-cell {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .result-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+  }
+
+  .result-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.04em;
+  }
+
+  .result-value.accent  { color: var(--accent); }
+  .result-value.blue    { color: var(--accent2); }
+  .result-value.green   { color: var(--green); }
+  .result-value.red     { color: var(--red); }
+
+  .result-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  /* Diff panel */
+  .diff-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+  }
+
+  .diff-section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    margin-top: 16px;
+  }
+
+  .diff-section-title:first-child { margin-top: 0; }
+
+  .diff-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .diff-row:last-child { border-bottom: none; }
+
+  .diff-key {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  .diff-val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .diff-val.pos   { color: var(--green); }
+  .diff-val.neg   { color: var(--red); }
+  .diff-val.green { color: var(--green); }
+  .diff-val.muted { color: var(--text-dim); font-weight: 400; }
+
+  /* Big verdict */
+  .verdict {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 2px;
+  }
+
+  .verdict-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .verdict-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .verdict-value.pos   { color: var(--green); }
+  .verdict-value.neg   { color: var(--red); }
+  .verdict-value.zero  { color: var(--green); }
+  .verdict-value.green { color: var(--green); }
+  .verdict-value.accent { color: var(--accent); }
+
+  .verdict-tc {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  /* Error */
+  .error-msg {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--red);
+    padding: 6px 0 0;
+    min-height: 20px;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 16px;
+    padding: 12px 0 0;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-dimmer);
+  }
+
+  .legend-item .swatch {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--border-bright);
+    flex-shrink: 0;
+  }
+
+  .legend-item .swatch.drop { border-style: dashed; }
+
+  .gap { height: 12px; }
+
+  /* Unit toggle */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .toggle-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-dimmer);
+    text-transform: uppercase;
+  }
+  .toggle-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.1s;
+    user-select: none;
+  }
+  .toggle-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<a href="/" style="display:block;width:100%;max-width:820px;margin-bottom:16px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dimmer);text-decoration:none;letter-spacing:0.08em;transition:color 0.15s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-dimmer)'">&#8592; graviton.tools</a>
+
+<header>
+  <h1>TIMECODE DURATION CALCULATOR</h1>
+  <span class="version">v1.1 // inclusive frame counting</span>
+</header>
+
+<div class="main">
+
+  <!-- SOURCE -->
+  <div class="panel">
+    <div class="panel-header">Source Duration</div>
+    <div class="panel-body">
+      <div class="tc-row">
+        <div class="tc-label">DURATION</div>
+        <div class="tc-input-group" id="src-input-group">
+          <input class="tc-field" id="src-hh" type="text" inputmode="numeric" maxlength="2" value="00" placeholder="00">
+          <span class="tc-sep">:</span>
+          <input class="tc-field" id="src-mm" type="text" inputmode="numeric" maxlength="2" value="23" placeholder="00">
+          <span class="tc-sep">:</span>
+          <input class="tc-field" id="src-ss" type="text" inputmode="numeric" maxlength="2" value="30" placeholder="00">
+          <span class="tc-sep" id="src-sep-frames">;</span>
+          <input class="tc-field" id="src-ff" type="text" inputmode="numeric" maxlength="2" value="00" placeholder="00">
+        </div>
+      </div>
+      <div class="error-msg" id="src-error"></div>
+
+      <div class="fr-group-label" style="margin-bottom:8px;">FRAME RATE</div>
+      <div class="fr-pills" id="src-pills"></div>
+      <div class="legend">
+        <div class="legend-item"><span class="swatch"></span> Non-drop / Progressive</div>
+        <div class="legend-item"><span class="swatch drop"></span> Drop Frame</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- TARGET -->
+  <div class="panel">
+    <div class="panel-header blue">Target</div>
+    <div class="panel-body">
+      <div class="fr-group-label" style="margin-bottom:8px;">FRAME RATE</div>
+      <div class="fr-pills" id="tgt-pills"></div>
+
+      <hr class="panel-divider">
+
+      <div class="tc-row" style="margin-bottom:0;">
+        <div class="tc-label">TARGET<br>DURATION</div>
+        <div class="tc-input-group tgt-group">
+          <input class="tc-field" id="tgt-hh" type="text" inputmode="numeric" maxlength="2" value="00" placeholder="00">
+          <span class="tc-sep">:</span>
+          <input class="tc-field" id="tgt-mm" type="text" inputmode="numeric" maxlength="2" value="22" placeholder="00">
+          <span class="tc-sep">:</span>
+          <input class="tc-field" id="tgt-ss" type="text" inputmode="numeric" maxlength="2" value="45" placeholder="00">
+          <span class="tc-sep" id="tgt-sep-frames">;</span>
+          <input class="tc-field" id="tgt-ff" type="text" inputmode="numeric" maxlength="2" value="00" placeholder="00">
+        </div>
+      </div>
+      <div class="error-msg" id="tgt-error"></div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- RESULTS -->
+  <div class="panel">
+    <div class="panel-header green">Results</div>
+    <div class="panel-body" style="padding:0;">
+      <div class="result-grid" id="result-grid">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <!-- UNIT TOGGLE -->
+  <div class="diff-panel" style="padding:14px 20px; margin-bottom:2px; display:flex; align-items:center; gap:12px;">
+    <span class="toggle-label">Display as</span>
+    <div class="toggle-btn active" id="toggle-secs" onclick="setUnit('secs')">SECONDS + FRAMES</div>
+    <div class="toggle-btn" id="toggle-frames" onclick="setUnit('frames')">FRAMES</div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict" id="verdict-bar">
+    <!-- populated by JS -->
+  </div>
+
+  <!-- DIFF -->
+  <div class="diff-panel" id="diff-panel">
+    <!-- populated by JS -->
+  </div>
+
+</div>
+
+<script>
+const RATES = [
+  { label: '23.976',    num: 24000, den: 1001, drop: false, interlaced: false },
+  { label: '24',        num: 24,    den: 1,    drop: false, interlaced: false },
+  { label: '25',        num: 25,    den: 1,    drop: false, interlaced: false },
+  { label: '29.97 DF',  num: 30000, den: 1001, drop: true,  interlaced: false },
+  { label: '29.97 NDF', num: 30000, den: 1001, drop: false, interlaced: false },
+  { label: '30',        num: 30,    den: 1,    drop: false, interlaced: false },
+  { label: '47.95',     num: 48000, den: 1001, drop: false, interlaced: false },
+  { label: '48',        num: 48,    den: 1,    drop: false, interlaced: false },
+  { label: '50',        num: 50,    den: 1,    drop: false, interlaced: false },
+  { label: '59.94 DF',  num: 60000, den: 1001, drop: true,  interlaced: false },
+  { label: '59.94 NDF', num: 60000, den: 1001, drop: false, interlaced: false },
+  { label: '60',        num: 60,    den: 1,    drop: false, interlaced: false },
+  { label: '23.976i',   num: 24000, den: 1001, drop: false, interlaced: true  },
+  { label: '25i',       num: 25,    den: 1,    drop: false, interlaced: true  },
+  { label: '29.97i DF', num: 30000, den: 1001, drop: true,  interlaced: true  },
+  { label: '29.97i',    num: 30000, den: 1001, drop: false, interlaced: true  },
+  { label: '30i',       num: 30,    den: 1,    drop: false, interlaced: true  },
+];
+
+let srcRateIdx = 3;
+let tgtRateIdx = 3;
+
+function buildPills(containerId, getIdx, activeClass, onSelect) {
+  const container = document.getElementById(containerId);
+  RATES.forEach((r, i) => {
+    const pill = document.createElement('div');
+    pill.className = 'fr-pill' + (r.drop ? ' drop' : '') + (i === getIdx() ? ' ' + activeClass : '');
+    pill.textContent = r.label;
+    pill.title = r.interlaced ? 'Interlaced' : 'Progressive';
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('#' + containerId + ' .fr-pill').forEach(p => p.classList.remove('active','tgt-active'));
+      pill.classList.add(activeClass);
+      onSelect(i);
+    });
+    container.appendChild(pill);
+  });
+}
+
+buildPills('src-pills', () => srcRateIdx, 'active', (i) => { srcRateIdx = i; updateSep('src', RATES[i]); calculate(); });
+buildPills('tgt-pills', () => tgtRateIdx, 'tgt-active', (i) => { tgtRateIdx = i; updateSep('tgt', RATES[i]); calculate(); });
+
+function updateSep(prefix, rate) {
+  const sep = document.getElementById(prefix + '-sep-frames');
+  sep.textContent = rate.drop ? ';' : ':';
+  sep.className = 'tc-sep' + (rate.drop ? (prefix === 'src' ? ' drop-sep' : ' tgt-drop-sep') : '');
+}
+updateSep('src', RATES[srcRateIdx]);
+updateSep('tgt', RATES[tgtRateIdx]);
+
+function isDroppedFrame(mm, ss, ff, nomFps) {
+  const dc = nomFps === 60 ? 4 : 2;
+  return ss === 0 && ff < dc && mm % 10 !== 0;
+}
+
+function tcToFrames(hh, mm, ss, ff, rate) {
+  const { num, den, drop } = rate;
+  const nomFps = Math.round(num / den);
+  if (drop) {
+    const dc = nomFps === 60 ? 4 : 2;
+    const fp10 = Math.round(num / den * 600);
+    const fpMin = Math.round(num / den * 60);
+    const totalMin = hh * 60 + mm;
+    const d = Math.floor(totalMin / 10);
+    const m = totalMin % 10;
+    return fp10 * d + fpMin * m + (m > 0 ? -dc * m : 0) + nomFps * ss + ff + 1;
+  } else {
+    return nomFps * (hh * 3600 + mm * 60 + ss) + ff + 1;
+  }
+}
+
+function framesToSeconds(fc, rate) { return fc * rate.den / rate.num; }
+
+function framesToTC(totalFrames, rate) {
+  const { num, den, drop } = rate;
+  const nomFps = Math.round(num / den);
+  let fn = Math.max(0, totalFrames - 1);
+  if (drop) {
+    const dc = nomFps === 60 ? 4 : 2;
+    const fp10 = Math.round(num / den * 600);
+    const fpMin = Math.round(num / den * 60) - dc;
+    const d10 = Math.floor(fn / fp10);
+    const rem = fn % fp10;
+    let mins, secs, frs;
+    if (rem < dc) { mins = 0; secs = 0; frs = rem; }
+    else {
+      const ar = rem - dc;
+      mins = Math.floor(ar / fpMin) + 1;
+      const aim = ar % fpMin;
+      secs = Math.floor(aim / nomFps);
+      frs = aim % nomFps;
+    }
+    const tm = d10 * 10 + mins;
+    return p2(Math.floor(tm/60)) + ':' + p2(tm%60) + ':' + p2(secs) + ';' + p2(frs);
+  } else {
+    const frs = fn % nomFps;
+    const ts = Math.floor(fn / nomFps);
+    return p2(Math.floor(ts/3600)) + ':' + p2(Math.floor(ts/60)%60) + ':' + p2(ts%60) + ':' + p2(frs);
+  }
+}
+
+function p2(n) { return String(Math.round(n)).padStart(2,'0'); }
+
+function readTC(prefix) {
+  const g = id => Math.max(0, parseInt(document.getElementById(prefix+'-'+id).value) || 0);
+  return { hh: g('hh'), mm: Math.min(59,g('mm')), ss: Math.min(59,g('ss')), ff: g('ff') };
+}
+
+function validateTC(hh, mm, ss, ff, rate) {
+  const n = Math.round(rate.num / rate.den);
+  if (mm > 59) return 'Minutes must be 0-59';
+  if (ss > 59) return 'Seconds must be 0-59';
+  if (ff >= n) return 'Frames must be 0-' + (n-1) + ' for this rate';
+  if (rate.drop && isDroppedFrame(mm, ss, ff, n)) return 'Frame ' + ff + ' at ' + p2(mm) + ':' + p2(ss) + ' is a dropped frame';
+  return null;
+}
+
+function fmtDelta(s) {
+  const abs = Math.abs(s), sign = s < 0 ? '-' : '+';
+  const h = Math.floor(abs/3600), m = Math.floor((abs%3600)/60), sec = (abs%60).toFixed(3);
+  if (h > 0) return sign+h+'h '+m+'m '+sec+'s';
+  if (m > 0) return sign+m+'m '+sec+'s';
+  return sign+sec+'s';
+}
+
+let displayUnit = 'secs';
+function setUnit(u) {
+  displayUnit = u;
+  document.getElementById('toggle-frames').classList.toggle('active', u==='frames');
+  document.getElementById('toggle-secs').classList.toggle('active', u==='secs');
+  calculate();
+}
+
+function fmtAdj(frames, secs, rate) {
+  const abs = Math.abs(frames);
+  if (displayUnit === 'frames') {
+    return (frames >= 0 ? '+' : '-') + abs + ' frame' + (abs !== 1 ? 's' : '');
+  } else {
+    const absSecs = Math.abs(secs);
+    const fps = rate.num / rate.den;
+    const s = Math.floor(absSecs);
+    const f = Math.round((absSecs - s) * fps);
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    const sign = secs >= 0 ? '+' : '-';
+    let out = sign;
+    if (m > 0) out += m + 'm ';
+    out += sec + 's';
+    if (f > 0) out += ' ' + f + 'f';
+    return out;
+  }
+}
+
+function calculate() {
+  const srcErrEl = document.getElementById('src-error');
+  const tgtErrEl = document.getElementById('tgt-error');
+  const src = readTC('src'), tgt = readTC('tgt');
+  const srcRate = RATES[srcRateIdx], tgtRate = RATES[tgtRateIdx];
+
+  const srcErr = validateTC(src.hh, src.mm, src.ss, src.ff, srcRate);
+  srcErrEl.textContent = srcErr ? ('⚠ ' + srcErr) : '';
+  const tgtErr = validateTC(tgt.hh, tgt.mm, tgt.ss, tgt.ff, tgtRate);
+  tgtErrEl.textContent = tgtErr ? ('⚠ ' + tgtErr) : '';
+  if (srcErr || tgtErr) return;
+
+  const srcFps = srcRate.num / srcRate.den;
+  const tgtFps = tgtRate.num / tgtRate.den;
+
+  const srcFrames = tcToFrames(src.hh, src.mm, src.ss, src.ff, srcRate);
+  const srcSecs   = framesToSeconds(srcFrames, srcRate);
+  const srcTC     = framesToTC(srcFrames, srcRate);
+
+  const tgtFrames = tcToFrames(tgt.hh, tgt.mm, tgt.ss, tgt.ff, tgtRate);
+  const tgtSecs   = framesToSeconds(tgtFrames, tgtRate);
+  const tgtTC     = framesToTC(tgtFrames, tgtRate);
+
+  // Source at target rate (for display)
+  const srcAtTgtExact  = srcFrames * tgtRate.num * srcRate.den / (srcRate.num * tgtRate.den);
+  const srcAtTgtFrames = Math.round(srcAtTgtExact);
+  const srcAtTgtTC     = framesToTC(srcAtTgtFrames, tgtRate);
+
+  // Ideal source frame count for this target — round to nearest whole frame
+  const idealSrcExact   = tgtFrames * srcRate.num * tgtRate.den / (tgtRate.num * srcRate.den);
+  const idealSrcRounded = Math.round(idealSrcExact);
+  const frameAdj   = idealSrcRounded - srcFrames;
+  const intIsExact = frameAdj === 0;
+  const intIsOver  = frameAdj < 0;
+  const intIsUnder = frameAdj > 0;
+
+  // Time delta
+  const deltaSecs      = srcSecs - tgtSecs;
+  const deltaFramesSrc = deltaSecs * srcFps;
+  const deltaFramesTgt = deltaSecs * tgtFps;
+  const deltaMS        = deltaSecs * 1000;
+  const dClass = intIsOver ? 'neg' : intIsUnder ? 'accent' : 'green';
+  const sign = deltaSecs >= 0 ? '+' : '';
+
+  // Result grid
+  document.getElementById('result-grid').innerHTML =
+    '<div class="result-cell"><div class="result-label">Source TC</div><div class="result-value accent">'+srcTC+'</div><div class="result-sub">'+srcRate.label+' · '+(srcRate.interlaced?'Interlaced':'Progressive')+'</div></div>' +
+    '<div class="result-cell"><div class="result-label">Source Real Duration</div><div class="result-value">'+srcSecs.toFixed(6)+'s</div><div class="result-sub">'+srcFrames.toLocaleString()+' frames (inclusive)</div></div>' +
+    '<div class="result-cell"><div class="result-label">Source at Target Rate</div><div class="result-value">'+srcAtTgtTC+'</div><div class="result-sub">'+srcAtTgtFrames.toLocaleString()+' frames @ '+tgtRate.label+'</div></div>' +
+    '<div class="result-cell"><div class="result-label">Target TC</div><div class="result-value blue">'+tgtTC+'</div><div class="result-sub">'+tgtRate.label+' · '+(tgtRate.interlaced?'Interlaced':'Progressive')+'</div></div>' +
+    '<div class="result-cell"><div class="result-label">Target Real Duration</div><div class="result-value">'+tgtSecs.toFixed(6)+'s</div><div class="result-sub">'+tgtFrames.toLocaleString()+' frames (inclusive)</div></div>' +
+    '<div class="result-cell"><div class="result-label">Rate Ratio (src→tgt)</div><div class="result-value">'+(tgtFps/srcFps).toFixed(8)+'</div><div class="result-sub">multiply src frames by this</div></div>';
+
+  // Adj label — always in source rate
+  function adjLabel(n) { return fmtAdj(n, n / srcFps, srcRate); }
+  const idealSrcTC = framesToTC(idealSrcRounded, srcRate);
+  const adjAction = intIsExact ? '= ON TARGET'
+    : frameAdj > 0 ? 'ADD ' + adjLabel(frameAdj) + ' TO SOURCE'
+                   : 'REMOVE ' + adjLabel(Math.abs(frameAdj)) + ' FROM SOURCE';
+
+  // Verdict bar
+  document.getElementById('verdict-bar').innerHTML =
+    '<div><div class="verdict-label">SOURCE vs TARGET</div><div class="verdict-tc">'+srcTC+' @ '+srcRate.label+'&nbsp;&nbsp;→&nbsp;&nbsp;'+tgtTC+' @ '+tgtRate.label+'</div></div>' +
+    '<div style="text-align:right;">' +
+      (intIsExact
+        ? '<div class="verdict-value zero">= ON TARGET</div><div class="verdict-tc">Source maps exactly to target</div>'
+        : '<div class="verdict-value '+dClass+'">'+adjAction+'</div><div class="verdict-tc" style="color:var(--text);font-weight:600;font-size:14px;margin-top:6px;">&#x27A4;&nbsp; '+idealSrcTC+' @ '+srcRate.label+'</div>'
+      ) +
+    '</div>';
+
+  // Diff panel
+  document.getElementById('diff-panel').innerHTML =
+    '<div class="diff-section-title">Source Adjustment (at '+srcRate.label+')</div>' +
+    '<div class="diff-row"><span class="diff-key">'+(intIsExact?'No change needed':frameAdj>0?'Add to source':'Remove from source')+'</span><span class="diff-val '+dClass+'" style="font-size:18px;">'+(intIsExact?'—':adjLabel(Math.abs(frameAdj)))+'</span></div>' +
+    '<div class="diff-row"><span class="diff-key">Aim for source TC</span><span class="diff-val muted">'+(intIsExact?srcTC:idealSrcTC)+' @ '+srcRate.label+'</span></div>' +
+    '<div class="diff-section-title" style="margin-top:20px;">Time Delta (Current Source vs Target)</div>' +
+    '<div class="diff-row"><span class="diff-key">Difference (real time)</span><span class="diff-val '+dClass+'">'+sign+deltaSecs.toFixed(6)+'s</span></div>' +
+    '<div class="diff-row"><span class="diff-key">Difference (milliseconds)</span><span class="diff-val '+dClass+'">'+sign+deltaMS.toFixed(3)+' ms</span></div>' +
+    '<div class="diff-row"><span class="diff-key">Delta at source rate ('+srcRate.label+')</span><span class="diff-val '+dClass+'">'+sign+deltaFramesSrc.toFixed(4)+' frames</span></div>' +
+    '<div class="diff-row"><span class="diff-key">Delta at target rate ('+tgtRate.label+')</span><span class="diff-val '+dClass+'">'+sign+deltaFramesTgt.toFixed(4)+' frames</span></div>';
+}
+
+function bindFields(prefix, getRateIdx) {
+  ['hh','mm','ss','ff'].forEach(part => {
+    const id = prefix + '-' + part;
+    const el = document.getElementById(id);
+    const maxes = { hh:99, mm:59, ss:59, ff:99 };
+    el.addEventListener('input', () => { el.value = el.value.replace(/\D/g,'').slice(0,2); calculate(); });
+    el.addEventListener('blur', () => {
+      let v = parseInt(el.value) || 0;
+      if (v > maxes[part]) v = maxes[part];
+      if (part === 'ff') { const n = Math.round(RATES[getRateIdx()].num/RATES[getRateIdx()].den); if (v >= n) v = n-1; }
+      el.value = String(v).padStart(2,'0');
+      calculate();
+    });
+    el.addEventListener('focus', () => el.select());
+  });
+}
+
+bindFields('src', () => srcRateIdx);
+bindFields('tgt', () => tgtRateIdx);
+calculate();
+</script>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dimmer);letter-spacing:0.08em;margin-top:10px;">&copy; Graviton.tools 2026</div>
+</body>
+</html>
