@@ -1,0 +1,257 @@
+<!-- graviton.tools/pricing — pricing & licensing hub (Amigo Media) -->
+<!-- Self-contained: inline styles so it renders in web/ without external CSS deps -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing &amp; Licensing — graviton.tools</title>
+<meta name="description" content="Pricing and licensing for Graviton.tools apps — GradeShare, Manifold, Flip, Scaffold, and Scope. Perpetual and subscription options, free trials, and merchant-of-record details.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080808;--surface-1:#0d0d0d;--surface-2:#121212;--surface-3:#181818;
+    --line:rgba(255,255,255,.08);--line-bright:rgba(255,255,255,.14);
+    --text:#f4f3f2;--text-body:#cdcac7;--text-dim:#9b9896;--text-faint:#6a6764;
+    --red:rgb(230,5,1);
+    --grad:linear-gradient(100deg,#ffab3d 0%,#ff3b22 32%,#e60501 58%,#ff2e6e 100%);
+    --display:'Space Grotesk',system-ui,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--body:'IBM Plex Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  :focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(8,8,8,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .wordmark{font-family:var(--display);font-size:19px;letter-spacing:-.01em}
+  .wordmark b{font-weight:700}.wordmark span{font-weight:400;color:var(--text-dim)}.wordmark i{color:var(--red);font-style:normal}
+  .nav-links{display:flex;gap:30px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim)}
+  .nav-links a{transition:color .2s}.nav-links a:hover{color:var(--text)}
+  @media(max-width:640px){.nav-links{gap:16px;font-size:11px}}
+
+  /* header */
+  .page-hero{position:relative;overflow:hidden;padding:72px 0 34px;border-bottom:1px solid var(--line)}
+  .page-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(50% 70% at 18% 0%,rgba(230,5,1,.16),transparent 62%)}
+  .page-hero .inner{position:relative;z-index:1}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);margin-bottom:18px}
+  .eyebrow .dot{color:var(--red)}
+  .page-hero h1{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(38px,6vw,64px);line-height:.96;letter-spacing:-.02em}
+  .page-hero .lede{margin-top:20px;max-width:60ch;color:var(--text-dim);font-size:17px}
+
+  /* content */
+  .content{max-width:860px;margin:0 auto;padding:52px 28px 88px}
+  .content > section + section{margin-top:16px}
+  .label{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:block;margin:44px 0 16px}
+  .content h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:clamp(22px,3vw,28px);letter-spacing:-.01em;margin-bottom:10px}
+  .content p{color:var(--text-body);font-size:16px}
+  .content p + p{margin-top:14px}
+  .content a.inline{color:var(--red);text-decoration:underline;text-underline-offset:2px}
+  .content a.inline:hover{filter:brightness(1.25)}
+
+  /* how-it-works cards */
+  .models{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+  @media(max-width:680px){.models{grid-template-columns:1fr}}
+  .model{padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.03),transparent 40%),var(--surface-1)}
+  .model h3{font-family:var(--display);font-weight:600;font-size:18px;margin-bottom:8px}
+  .model p{font-size:14px;color:var(--text-dim)}
+
+  /* product cards */
+  .product{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.03),transparent 38%),var(--surface-1);padding:28px 30px;margin-top:18px}
+  .product-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .product-name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:26px;letter-spacing:-.01em}
+  .product-price{font-family:var(--mono);font-size:15px;color:var(--text);white-space:nowrap}
+  .product-meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);margin-top:6px}
+  .status{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);margin-top:10px}
+  .status.available{color:#54d18a;border-color:rgba(84,209,138,.35)}
+  .status.soon{color:var(--text-dim)}
+  .product p.desc{margin-top:16px;color:var(--text-body);font-size:15px}
+  .terms{margin-top:18px;border-top:1px solid var(--line);padding-top:16px;display:grid;grid-template-columns:130px 1fr;gap:8px 18px}
+  @media(max-width:520px){.terms{grid-template-columns:1fr}.terms dt{margin-top:8px}}
+  .terms dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+  .terms dd{color:var(--text-body);font-size:14.5px}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--text-faint);letter-spacing:.08em}
+  .footer-links{display:flex;gap:32px}
+  .footer-links a{color:var(--text-faint);text-decoration:none;transition:color .2s}
+  .footer-links a:hover{color:var(--text)}
+  @media(max-width:768px){footer{flex-direction:column;gap:16px;padding:24px;text-align:center}.footer-links{flex-wrap:wrap;justify-content:center;gap:16px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="wordmark"><b>graviton</b><i>.</i><span>tools</span></a>
+    <div class="nav-links">
+      <a href="index.html#apps">Our Apps</a>
+      <a href="index.html#free-tools">Free Tools</a>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap inner">
+    <div class="eyebrow"><span class="dot">●</span>&nbsp; Pricing</div>
+    <h1>Pricing &amp; Licensing</h1>
+    <p class="lede">Straightforward pricing for every Graviton app — what you pay, what you get, and exactly how the license works. No hidden fees, prices in USD. Checkout is opening soon — trials and licenses will be available shortly.</p>
+  </div>
+</header>
+
+<main class="content">
+
+  <!-- HOW LICENSING WORKS -->
+  <section>
+    <span class="label">How licensing works</span>
+    <h2>Two ways to buy</h2>
+    <p>Graviton apps are offered under two licensing models. Desktop apps are sold as one-time perpetual licenses. Scope, our web-based platform, is a subscription. Every product includes a free trial so you can evaluate it before paying.</p>
+
+    <div class="models">
+      <div class="model">
+        <h3>Perpetual (desktop apps)</h3>
+        <p>Pay once and own that version. Activate on up to 4 machines per license. Point releases (e.g. 1.1, 1.2) are free for the life of your license. Major versions (e.g. 2.0) may be offered as a paid upgrade — this is not guaranteed and will be decided at the time of release.</p>
+      </div>
+      <div class="model">
+        <h3>Subscription (Scope)</h3>
+        <p>Billed monthly or annually. Includes all updates while your subscription is active. Cancel any time — access continues through the end of your current billing period.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:20px">Payments are securely processed by <strong>Paddle.com</strong>, our Merchant of Record. Paddle handles checkout, applicable sales tax and VAT, and appears on your statement. See our <a class="inline" href="refund.html">Refund Policy</a> for details on returns, and our <a class="inline" href="terms.html">Terms of Service</a> for the full license agreement.</p>
+  </section>
+
+  <!-- DESKTOP APPS -->
+  <section>
+    <span class="label">Desktop apps — perpetual license</span>
+
+    <!-- GradeShare -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">GradeShare</div>
+          <div class="product-meta">Desktop · macOS &amp; Windows</div>
+        </div>
+        <div class="product-price">$49 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Pull DaVinci Resolve gallery stills into client-ready social layouts and branded contact sheets, with full HDR export — without leaving your grading session.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
+        <dt>Free trial</dt><dd>5 free exports — no license required to evaluate.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
+
+    <!-- Manifold -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">Manifold</div>
+          <div class="product-meta">Desktop · macOS</div>
+        </div>
+        <div class="product-price">$129 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">A Mac reference player done right: pixel-accurate playback, reference-grade HDR, SDI output to a calibrated display via Blackmagic DeckLink, live-stream monitoring (NDI/SRT/WHEP), deep metadata inspection, and scopes — in one trusted view.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
+        <dt>Free trial</dt><dd>7-day trial with full access to all features.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
+
+    <!-- Flip -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">Flip</div>
+          <div class="product-meta">Desktop · macOS &amp; Windows</div>
+        </div>
+        <div class="product-price">$99 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Rewrite delivery metadata directly in the container — color tags, HDR10 metadata, channel declarations, timecode, and chapter markers — with no re-encoding and no quality loss.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
+        <dt>Free trial</dt><dd>10 free metadata writes — no license required to evaluate.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
+
+    <!-- Scaffold -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">Scaffold</div>
+          <div class="product-meta">Desktop · macOS &amp; Windows</div>
+        </div>
+        <div class="product-price">$29 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Build, save, and deploy consistent project folder structures in seconds, sending them straight to DaVinci Resolve and Premiere Pro.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
+        <dt>Free trial</dt><dd>7-day trial with full access to all features.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- SCOPE -->
+  <section>
+    <span class="label">Scope — subscription</span>
+
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">Scope</div>
+          <div class="product-meta">Web app · any device</div>
+        </div>
+        <div class="product-price">$15/mo or $150/yr</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Project orders and invoicing built for post — from first proposal through e-signature to final invoice, in one branded pipeline. Scope lives at <a class="inline" href="https://tryscope.studio">tryscope.studio</a>.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>Subscription, billed monthly ($15) or annually ($150 — two months free).</dd>
+        <dt>Free trial</dt><dd>3 free client sends — no card required to evaluate.</dd>
+        <dt>Updates</dt><dd>All updates included while your subscription is active.</dd>
+        <dt>Cancellation</dt><dd>Cancel any time; access continues through the end of the billing period.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- COMPANY / MoR note -->
+  <section>
+    <span class="label">Billing &amp; company</span>
+    <h2>One company, two sites</h2>
+    <p>Graviton.tools and <a class="inline" href="https://tryscope.studio">tryscope.studio</a> are both operated by Amigo Media LLC. Graviton.tools is the shared home for pricing, licensing, and legal terms across the product line; Scope customers are directed here for those details. All purchases across both sites are processed by Paddle.com as Merchant of Record.</p>
+    <p>Questions about pricing, licensing, or a purchase? Reach us at <a class="inline" href="mailto:support@graviton.tools">support@graviton.tools</a>.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div>© Graviton.tools 2026 — An Amigo Media LLC Brand</div>
+  <div class="footer-links">
+    <a href="/pricing">Pricing</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="/refund">Refund Policy</a>
+    <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+  </div>
+</footer>
+
+</body>
+</html>
