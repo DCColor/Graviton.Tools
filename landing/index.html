@@ -112,12 +112,24 @@
   .wl-form input::placeholder{color:var(--faint)}
   @media(max-width:520px){.wl-form{flex-wrap:wrap}.wl-form input{flex-basis:100%}.wl-form .btn{flex-basis:100%}}
 
-  footer{border-top:1px solid var(--line);padding:40px 0 56px;margin-top:20px}
-  .foot{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
-  .foot-links{display:flex;flex-wrap:wrap;gap:22px;justify-content:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-  .foot-links a:hover{color:var(--text)}
-  .foot-mail{font-family:var(--mono);font-size:12px;color:var(--dim)}
-  .foot-brand{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  /* shared footer — identical on every landing/ page */
+  footer.gt-footer{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:1.5;color:#e8e8e4;letter-spacing:normal;border-top:1px solid rgba(255,255,255,.07);padding:36px 48px;position:relative;z-index:1;margin:0;width:100%;align-self:stretch;box-sizing:border-box;background:transparent;display:block;text-align:left}
+  .gt-footer *{box-sizing:border-box;margin:0;padding:0}
+  .gt-footer .gt-inner{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .gt-footer .gt-logo{display:flex;flex-direction:column;gap:4px}
+  .gt-footer .gt-wordmark{font-family:'Space Grotesk',sans-serif;font-size:16px;letter-spacing:-.01em;line-height:1;color:#e8e8e4}
+  .gt-footer .gt-wordmark .name{font-weight:600}
+  .gt-footer .gt-wordmark .dot{color:#ff2a26}
+  .gt-footer .gt-wordmark .ext{font-weight:300;opacity:.78}
+  .gt-footer .gt-brand{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#555550}
+  .gt-footer .gt-links{display:flex;gap:24px}
+  .gt-footer .gt-links a{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#555550;text-decoration:none;transition:color .2s}
+  .gt-footer .gt-links a:hover{color:#e8e8e4}
+  .gt-footer .gt-copy{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#555550;letter-spacing:.08em}
+  @media(max-width:900px){footer.gt-footer{padding:28px 24px}.gt-footer .gt-inner{flex-direction:column;gap:20px;text-align:center}.gt-footer .gt-logo{align-items:center}.gt-footer .gt-links{flex-wrap:wrap;justify-content:center}}
 </style>
 </head>
 <body>
@@ -130,7 +142,7 @@
 <header class="hero"><div class="wrap hero-in">
   <div class="eye"><span class="dot">●</span>&nbsp; Post-production workflow tools</div>
   <h1>The work around the work <span class="grad">handled</span></h1>
-  <p class="sub">Six focused apps for the tedious side of running a post business — structure, metadata, delivery, and getting your work seen.</p>
+  <p class="sub">We make the tools for the tedious side of running a post business — structure, metadata, paperwork, and promotion.</p>
 </div></header>
 
 
@@ -139,10 +151,10 @@
 
   <div class="wall" id="wall">
     <!-- order: tier1 Manifold, Scope | tier2 Flip, GradeShare | tier3 Index, Scaffold -->
-    <button class="app" onclick="openApp('manifold',this)"><div class="ico"><img src="assets/manifold-128.png" alt=""></div><div class="app-name">Manifold</div><div class="app-meta">Mac · Perpetual · <b>$129</b></div></button>
+    <button class="app" onclick="openApp('manifold',this)"><div class="ico"><img src="assets/manifold-128.png" alt=""></div><div class="app-name">Manifold</div><div class="app-meta">Mac · Perpetual · <b>$139</b></div></button>
     <button class="app" onclick="openApp('scope',this)"><div class="ico"><img src="assets/scope_128x128.png" alt=""></div><div class="app-name">Scope</div><div class="app-meta">Web · Subscription · <b>$15/mo</b></div></button>
     <button class="app" onclick="openApp('flip',this)"><div class="ico"><img src="assets/flipicon_128x128.png" alt=""></div><div class="app-name">Flip</div><div class="app-meta">Mac · Perpetual · <b>$99</b></div></button>
-    <button class="app" onclick="openApp('gradeshare',this)"><div class="ico"><img src="assets/gradeshare_128x128.png" alt=""></div><div class="app-name">GradeShare</div><div class="app-meta">Mac · Perpetual · <b>$49</b></div></button>
+    <button class="app" onclick="openApp('gradeshare',this)"><div class="ico"><img src="assets/gradeshare_128x128.png" alt=""></div><div class="app-name">GradeShare</div><div class="app-meta">Mac · Perpetual · <b>$59</b></div></button>
     <button class="app" onclick="openApp('index',this)"><div class="ico"><img src="assets/indexicon_128x128.png" alt=""></div><div class="app-name">Index</div><div class="app-meta">Mac &amp; PC · Perpetual · <b>$29</b></div></button>
     <button class="app" onclick="openApp('scaffold',this)"><div class="ico"><img src="assets/scaffold_128x128.png" alt=""></div><div class="app-name">Scaffold</div><div class="app-meta">Mac · Perpetual · <b>$29</b></div></button>
   </div>
@@ -176,15 +188,27 @@
   <form class="wl-form" onsubmit="return false"><input type="text" placeholder="First name" aria-label="First name"><input type="email" placeholder="your@email.com" aria-label="Email"><button type="submit" class="btn">Notify me</button></form>
 </div></div></section>
 
-<footer><div class="wrap foot">
-  <div class="foot-links"><a href="#apps">Apps</a><a href="#free">Free Tools</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund.html">Refunds</a></div>
-  <div class="foot-mail"><a href="mailto:support@graviton.tools">support@graviton.tools</a></div>
-  <div class="foot-brand">An Amigo Media Brand</div>
-</div></footer>
+<footer class="gt-footer">
+  <div class="gt-inner">
+    <div class="gt-logo">
+      <div class="gt-wordmark"><span class="name">graviton</span><span class="dot">.</span><span class="ext">tools</span></div>
+      <div class="gt-brand">AN AMIGO MEDIA LLC BRAND</div>
+    </div>
+    <div class="gt-links">
+      <a href="about.html">About &amp; Partners</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+    </div>
+    <div class="gt-copy">&copy; Graviton.tools 2026</div>
+  </div>
+</footer>
 
 <script>
   var DATA={
-    manifold:{name:"Manifold",img:"assets/manifold-128.png",cat:"Mac · Perpetual",price:"$129",soon:"Coming soon",btn:"Notify me",
+    manifold:{name:"Manifold",img:"assets/manifold-128.png",cat:"Mac · Perpetual",price:"$139",soon:"Coming soon",btn:"Notify me",
       lede:"A Mac reference player done right. Local files and live streams — playback, HDR, streams, scopes and metadata — converged into one trusted view.",
       trial:"Free 7-day trial, full access. Buy once, up to 4 machines.",
       feats:["<strong>Playback</strong> for .MOV, MXF, H.264/HEVC, and more, in a clean frameless window","<strong>Accurate HDR</strong> with explicit PQ and HLG handling — controlled headroom and mastering-metadata awareness, not the system's guess","<strong>Deep metadata inspector</strong>: codec, resolution, color science (NCLC), per-track audio, timed text, source timecode, provenance","<strong>Send a true reference signal</strong> to a calibrated display over SDI via Blackmagic DeckLink","<strong>Monitor live feeds</strong> like files — NDI, SRT, and WHEP in the same view","<strong>Rich visualization</strong> for framing and social. Scopes for quick signal evaluation","<strong>One-click send to Flip</strong> for metadata editing"]},
@@ -196,7 +220,7 @@
       lede:"Delivery metadata, fixed instantly — color tags, HDR10, channel declarations, timecode and chapters rewritten in the container. No re-encode. A 90-minute master saves as fast as a 30-second clip.",
       trial:"Free trial: 10 metadata writes. Buy once, up to 4 machines.",
       feats:["<strong>Color space tags</strong> (NCLC/CICP) — set, fix, or add. Catches the 1·2·1 pattern Resolve writes on certain exports","<strong>HDR10 static metadata</strong> — add mastering display and MaxCLL/MaxFALL to masters that ship without it. No re-export","<strong>Channel layout declarations</strong> — declare 5.1 and 7.1 in MOV and MXF, so an NLE routes them correctly","<strong>MOV, MP4, and MXF</strong> — delivery files and mezzanine masters alike","<strong>Timecode</strong> — read and rewrite start timecode in place, or add a track to a file without one","<strong>Chapter markers</strong> — edit titles or mark them from the built-in player","<strong>Batch a whole folder</strong> — file queue plus saved presets","<strong>Built-in player</strong> with per-channel audio stats before delivery"]},
-    gradeshare:{name:"GradeShare",img:"assets/gradeshare_128x128.png",cat:"Mac · Perpetual",price:"$49",soon:"Coming soon",btn:"Notify me",
+    gradeshare:{name:"GradeShare",img:"assets/gradeshare_128x128.png",cat:"Mac · Perpetual",price:"$59",soon:"Coming soon",btn:"Notify me",
       lede:"Connect directly to DaVinci Resolve or import from disk to transform your stills into polished social layouts and client-ready contact sheets — in just a few clicks.",
       trial:"Free trial: 10 exports. Buy once, up to 4 machines.",
       feats:["<strong>Direct connection</strong> to DaVinci Resolve Still and PowerGrade albums","<strong>Import stills</strong> from disk with color science override controls","<strong>Multiplatform social layouts</strong> for Instagram, Facebook, and TikTok","<strong>Quickly create</strong> professional contact sheet PDFs for client review","<strong>Export JPEG, PNG, TIFF, AVIF, and JPEGR</strong> with automatic color science transforms","<strong>Full HDR support</strong> with PQ and HLG passthrough — correct metadata tagging","<strong>Per-cell zoom, pan,</strong> watermarks, color tweaks, and captions"]},
