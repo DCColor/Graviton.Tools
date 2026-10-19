@@ -110,12 +110,14 @@
   .wl-form{display:flex;gap:8px;max-width:520px;margin:22px auto 0;background:var(--s2);border:1px solid var(--line);border-radius:12px;padding:7px}
   .wl-form input{flex:1;min-width:0;background:transparent;border:0;color:var(--text);font-family:var(--sans);font-size:15px;padding:11px}
   .wl-form input::placeholder{color:var(--faint)}
+  .wl-success{display:none;max-width:520px;margin:22px auto 0;padding:14px 0;border-top:1px solid var(--line2);font-family:var(--mono);font-size:13px;letter-spacing:.1em;color:var(--text)}
+  .btn:disabled{opacity:.7;cursor:default}
   @media(max-width:520px){.wl-form{flex-wrap:wrap}.wl-form input{flex-basis:100%}.wl-form .btn{flex-basis:100%}}
 
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
-  /* shared footer — identical on every landing/ page */
+  /* shared footer — identical on every page */
   footer.gt-footer{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:1.5;color:#e8e8e4;letter-spacing:normal;border-top:1px solid rgba(255,255,255,.07);padding:36px 48px;position:relative;z-index:1;margin:0;width:100%;align-self:stretch;box-sizing:border-box;background:transparent;display:block;text-align:left}
   .gt-footer *{box-sizing:border-box;margin:0;padding:0}
   .gt-footer .gt-inner{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
@@ -185,7 +187,8 @@
 <section class="wl" id="waitlist"><div class="wrap"><div class="wl-box">
   <h2>Be the <span class="grad">first</span> to know</h2>
   <p>One email when the apps ship. No spam.</p>
-  <form class="wl-form" onsubmit="return false"><input type="text" placeholder="First name" aria-label="First name"><input type="email" placeholder="your@email.com" aria-label="Email"><button type="submit" class="btn">Notify me</button></form>
+  <form class="wl-form" id="notify-form" onsubmit="handleSubmit(event)"><input id="field-firstname" type="text" placeholder="First name" aria-label="First name" autocomplete="given-name"><input id="field-email" type="email" placeholder="your@email.com" aria-label="Email" required autocomplete="email"><button type="submit" class="btn" id="submit-btn">Notify me</button></form>
+  <div class="wl-success" id="email-success">&#10003;&nbsp; You're on the list. We'll be in touch.</div>
 </div></div></section>
 
 <footer class="gt-footer">
@@ -215,7 +218,7 @@
     scope:{name:"Scope",img:"assets/scope_128x128.png",cat:"Web · Subscription",price:'$15<small>/mo · $150/yr</small>',soon:"At tryscope.studio",btn:"Learn more",href:"https://tryscope.studio",
       lede:"Stop fighting cobbled-together templates. A professional proposal-to-invoice pipeline that's branded, signable, and built around how post work gets sold and billed.",
       trial:"Free trial: 3 sent scopes. Unlimited sends from $15/mo.",
-      feats:["<strong>Drag-and-drop project order builder</strong> — specs, schedule, fees, optional services, and terms in one doc","<strong>Add optional services</strong> clients can select themselves","<strong>Quickly build</strong> payment structures, discounts, & client selctable services","<strong>Clients sign</strong> from a clean web link — no app, no account, no printing","<strong>One-click invoice</strong> from a signed scope — line items pre-populated","<strong>Fee tools</strong> for creative billing — day rates, per-episode multipliers, discounts","<strong>Collaborate</strong> get comments from collaborators on every Scope""<strong>Milestone scheduling</strong> with Google Calendar and iCal overlay"]},
+      feats:["<strong>Drag-and-drop project order builder</strong> — specs, schedule, fees, optional services, and terms in one doc","<strong>Add optional services</strong> clients can select themselves","<strong>Quickly build</strong> payment structures, discounts, & client-selectable services","<strong>Clients sign</strong> from a clean web link — no app, no account, no printing","<strong>One-click invoice</strong> from a signed scope — line items pre-populated","<strong>Fee tools</strong> for creative billing — day rates, per-episode multipliers, discounts","<strong>Collaborate</strong> get comments from collaborators on every Scope","<strong>Milestone scheduling</strong> with Google Calendar and iCal overlay"]},
     flip:{name:"Flip",img:"assets/flipicon_128x128.png",cat:"Mac · Perpetual",price:"$99",soon:"Coming soon",btn:"Notify me",
       lede:"Delivery metadata, fixed instantly — color tags, HDR10, channel declarations, timecode and chapters rewritten in the container. No re-encode. A 90-minute master saves as fast as a 30-second clip.",
       trial:"Free trial: 10 metadata writes. Buy once, up to 4 machines.",
@@ -227,11 +230,11 @@
     index:{name:"Index",img:"assets/indexicon_128x128.png",cat:"Mac & Windows · Perpetual",price:"$29",soon:"Coming soon",btn:"Notify me",
       lede:"Send professional, cleanly formatted drive & delivery reports to clients in a couple of clicks. Scans incoming drives or your deliveries, pulls the metadata, and generates a branded PDF report your client can actually read.",
       trial:"Free 7-day trial, full access. Perpetual, buy-once.",
-      feats:["<strong>Drive handoffs</strong> — scan client drives and document whats on them","<strong>Skip the long emails</strong> — no more explaining deliveries to clients in prose","<strong>Choose your metadata</strong> — quickly pick the file metadata to include","<strong>Scans every common container</strong> — mezzanine and delivery formats, including .mov, .mp4, .mxf, DCP","<strong>Descriptions your way</strong> — write folder and file notes yourself, or have Claude write them","<strong>Your branding</strong> — your logo, a choice of fonts, and light or dark","<strong>PDF output</strong> — generated as PDFs for universal readability"]},
+      feats:["<strong>Drive handoffs</strong> — scan client drives and document what's on them","<strong>Skip the long emails</strong> — no more explaining deliveries to clients in prose","<strong>Choose your metadata</strong> — quickly pick the file metadata to include","<strong>Scans every common container</strong> — mezzanine and delivery formats, including .mov, .mp4, .mxf, DCP","<strong>Descriptions your way</strong> — write folder and file notes yourself, or have Claude write them","<strong>Your branding</strong> — your logo, a choice of fonts, and light or dark","<strong>PDF output</strong> — generated as PDFs for universal readability"]},
     scaffold:{name:"Scaffold",img:"assets/scaffold_128x128.png",cat:"Mac · Perpetual",price:"$29",soon:"Coming soon",btn:"Notify me",
       lede:"The fast way to build consistent project folders. Create, save, and deploy your standard folder structures — then send them straight to disk or your NLE.",
       trial:"Free 7-day trial, full access. Perpetual, buy-once.",
-      feats:["<strong>Repeatable, organized folder structures</strong> for any type of project","<strong>Customizable naming patterns</strong> for project folders and multi-level hierarchies","<strong>Reusable folder-chunk library</strong> to quickly build complex subfolder structures","<strong>Send folder structures</strong> directly to DaVinci Resolve and Premiere Pro in one click","<strong>Mark folders</strong> for creation on disk, NLE only, or both","<strong>Quickly build</strong> Keep Scaffold in the background with menu/task bar driven control", "<strong>Quickly build</strong> and reuse folder templates"]}
+      feats:["<strong>Repeatable, organized folder structures</strong> for any type of project","<strong>Customizable naming patterns</strong> for project folders and multi-level hierarchies","<strong>Reusable folder-chunk library</strong> to quickly build complex subfolder structures","<strong>Send folder structures</strong> directly to DaVinci Resolve and Premiere Pro in one click","<strong>Mark folders</strong> for creation on disk, NLE only, or both","<strong>Runs in the background</strong> — keep Scaffold in the background with menu/task bar driven control", "<strong>Quickly build</strong> and reuse folder templates"]}
   };
   var FREE={
     stash:{name:"Stash",img:"assets/Stash-128.png",href:"https://releases.graviton.tools/stash/mac-arm64",cat:"Mac utility · Free",btn:"Download free",
@@ -291,6 +294,42 @@
     d.classList.add('open');setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'nearest'});},120);
   }
   function closeFree(){document.getElementById('fdetail').classList.remove('open');document.querySelectorAll('#fgrid .ftile.active').forEach(function(a){a.classList.remove('active')});fcur=null;}
+
+  // Waitlist — same Worker endpoint, payload and messages as the previous live form.
+  // The Worker reads { action, email, firstName, lastName }; this form has no last name, so send ''.
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const email     = document.getElementById('field-email').value.trim();
+    const firstName = document.getElementById('field-firstname').value.trim();
+    const lastName  = '';
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const WORKER_URL = 'https://toolslaunchcapture.robbie-588.workers.dev';
+
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'waitlist', email, firstName, lastName })
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        document.getElementById('notify-form').style.display = 'none';
+        document.getElementById('email-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Try Again';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Try Again';
+      btn.disabled = false;
+    }
+  }
 </script>
 </body>
 </html>
