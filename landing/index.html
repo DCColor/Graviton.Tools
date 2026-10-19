@@ -170,7 +170,7 @@
   <div class="sec-head"><span class="sec-label">Free tools</span><span class="sec-rule"></span></div>
   <div class="fgrid" id="fgrid">
     <button class="ftile" onclick="openFree('stash',this)"><div class="fico"><img src="assets/Stash-128.png" alt=""></div><div class="fname">Stash</div><div class="ffree">Free · Mac</div></button>
-    <button class="ftile" onclick="openFree('catch',this)"><div class="fico"><img src="assets/catch-red-on-ink-256.png" alt=""></div><div class="fname">Catch</div><div class="ffree">Free · Browser</div></button>
+    <button class="ftile" onclick="openFree('catch',this)"><div class="fico"><img src="assets/catch-red-on-ink-256.png" alt=""></div><div class="fname">Catch</div><div class="ffree">Free · Chrome &amp; Safari</div></button>
     <button class="ftile" onclick="openFree('reframe',this)"><div class="fico"><img src="assets/ReframeScout-128.png" alt=""></div><div class="fname">Reframe Scout</div><div class="ffree">Free · DCTL</div></button>
     <button class="ftile" onclick="openFree('duration',this)"><div class="fico"><img src="assets/durationcalc-128.png" alt=""></div><div class="fname">Duration Calc</div><div class="ffree">Free · Web</div></button>
   </div>
@@ -178,7 +178,7 @@
   <div class="detail" id="fdetail"><div class="detail-in">
     <button class="detail-close" onclick="closeFree()">✕</button>
     <div><div class="d-top"><div class="d-ico" id="fIco"></div><h3 id="fName"></h3></div><p class="dlede" id="fLede"></p><ul class="feats" id="fFeats"></ul></div>
-    <div class="d-side"><span class="dcat" id="fCat"></span><div class="dprice" style="font-size:22px">Free</div><a class="btn" id="fBtn"></a></div>
+    <div class="d-side"><span class="dcat" id="fCat"></span><div class="dprice" style="font-size:22px">Free</div><a class="btn" id="fBtn"></a><a class="btn" id="fBtn2" style="display:none"></a></div>
   </div></div>
 </div></section>
 
@@ -237,7 +237,7 @@
     stash:{name:"Stash",img:"assets/Stash-128.png",href:"https://releases.graviton.tools/stash/mac-arm64",cat:"Mac utility · Free",btn:"Download free",
       lede:"Stash watches your clipboard and saves everything you copy — up to 20 items — so you can paste any of them whenever you need.",
       feats:["<strong>Clipboard history</strong> — up to 20 items, always at hand","<strong>See the source</strong> of each clip; pin the ones you use constantly","<strong>Lock the order</strong> when sequence matters","<strong>Batch file renamer</strong> — find/replace, prefix/suffix, auto-numbering"]},
-    catch:{name:"Catch",img:"assets/catch-red-on-ink-256.png",href:"https://chromewebstore.google.com/detail/catch-by-gravitontools/ecjmgapgamjnpamakdmpcknmaakfjnbj",cat:"Browser extension · Free",btn:"Download free",
+    catch:{name:"Catch",img:"assets/catch-red-on-ink-256.png",href:"https://chromewebstore.google.com/detail/catch-by-gravitontools/ecjmgapgamjnpamakdmpcknmaakfjnbj",cat:"Chrome & Safari extension · Free",btn:"Download for Chrome",btn2:"Download for Safari",href2:"https://releases.graviton.tools/catch/mac",
       lede:"Catch organizes every file-transfer link your clients send — detected automatically, sorted by client and project, and monitored so you always know what's arrived and what's expiring.",
       feats:["<strong>Auto-detects</strong> WeTransfer, Frame.io, Dropbox, Aspera and more","<strong>Sorted</strong> by client and project","<strong>Monitored</strong> — know what's arrived, downloaded, and about to expire","<strong>No account,</strong> no subscription required"]},
     reframe:{name:"Reframe Scout",img:"assets/ReframeScout-128.png",href:"https://github.com/DCColor/ReframeScout/releases/tag/v1.0",cat:"DCTL · Free",btn:"Download free",
@@ -283,6 +283,9 @@
     document.getElementById('fLede').textContent=o.lede;
     document.getElementById('fCat').textContent=o.cat;
     setBtn(document.getElementById('fBtn'),o.btn,o.href);
+    var b2=document.getElementById('fBtn2');
+    if(o.href2){setBtn(b2,o.btn2,o.href2);b2.style.display='';}
+    else{b2.style.display='none';}
     var ul=document.getElementById('fFeats');ul.innerHTML='';
     o.feats.forEach(function(f){var li=document.createElement('li');li.innerHTML='<span class="ck">✓</span><span>'+f+'</span>';ul.appendChild(li);});
     d.classList.add('open');setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'nearest'});},120);
