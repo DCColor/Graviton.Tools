@@ -57,24 +57,36 @@
   main a:hover { color: var(--red); text-decoration-color: var(--red); }
   a:hover { text-decoration: underline; }
 
-  footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--text-dimmer); letter-spacing: 0.08em; }
-  .footer-links { display: flex; gap: 32px; }
-  .footer-links a { color: var(--text-dimmer); text-decoration: none; }
-  .footer-links a:hover { color: var(--text); }
 
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     main { padding: 96px 24px 64px; }
-    footer { flex-direction: column; gap: 16px; padding: 24px; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
   }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  /* shared footer — identical on every page */
+  footer.gt-footer{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:1.5;color:#e8e8e4;letter-spacing:normal;border-top:1px solid rgba(255,255,255,.07);padding:36px 48px;position:relative;z-index:1;margin:0;width:100%;align-self:stretch;box-sizing:border-box;background:transparent;display:block;text-align:left}
+  .gt-footer *{box-sizing:border-box;margin:0;padding:0}
+  .gt-footer .gt-inner{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .gt-footer .gt-logo{display:flex;flex-direction:column;gap:4px}
+  .gt-footer .gt-wordmark{font-family:'Space Grotesk',sans-serif;font-size:16px;letter-spacing:-.01em;line-height:1;color:#e8e8e4}
+  .gt-footer .gt-wordmark .name{font-weight:600}
+  .gt-footer .gt-wordmark .dot{color:#ff2a26}
+  .gt-footer .gt-wordmark .ext{font-weight:300;opacity:.78}
+  .gt-footer .gt-brand{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#555550}
+  .gt-footer .gt-links{display:flex;gap:24px}
+  .gt-footer .gt-links a{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#555550;text-decoration:none;transition:color .2s}
+  .gt-footer .gt-links a:hover{color:#e8e8e4}
+  .gt-footer .gt-copy{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#555550;letter-spacing:.08em}
+  @media(max-width:900px){footer.gt-footer{padding:28px 24px}.gt-footer .gt-inner{flex-direction:column;gap:20px;text-align:center}.gt-footer .gt-logo{align-items:center}.gt-footer .gt-links{flex-wrap:wrap;justify-content:center}}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="/" class="nav-logo">graviton<span class="dot">.</span><span class="ext">tools</span></a>
-  <a href="/" class="nav-back">← Back</a>
+  <a href="index.html" class="nav-logo">graviton<span class="dot">.</span><span class="ext">tools</span></a>
+  <a href="index.html" class="nav-back">← Back</a>
 </nav>
 
 <main>
@@ -98,14 +110,21 @@
 
 </main>
 
-<footer>
-  <div>© Graviton.tools 2026 — An Amigo Media LLC Brand</div>
-  <div class="footer-links">
-    <a href="/pricing">Pricing</a>
-    <a href="/privacy">Privacy Policy</a>
-    <a href="/terms">Terms of Service</a>
-    <a href="/refund">Refund Policy</a>
-    <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+<footer class="gt-footer">
+  <div class="gt-inner">
+    <div class="gt-logo">
+      <div class="gt-wordmark"><span class="name">graviton</span><span class="dot">.</span><span class="ext">tools</span></div>
+      <div class="gt-brand">AN AMIGO MEDIA LLC BRAND</div>
+    </div>
+    <div class="gt-links">
+      <a href="about.html">About &amp; Partners</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+    </div>
+    <div class="gt-copy">&copy; Graviton.tools 2026</div>
   </div>
 </footer>
 

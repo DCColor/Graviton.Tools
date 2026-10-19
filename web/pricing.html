@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing &amp; Licensing — graviton.tools</title>
-<meta name="description" content="Pricing and licensing for Graviton.tools apps — GradeShare, Manifold, Flip, Scaffold, and Scope. Perpetual and subscription options, free trials, and merchant-of-record details.">
+<meta name="description" content="Pricing and licensing for Graviton.tools apps — Manifold, Scope, Flip, GradeShare, Index, and Scaffold. Perpetual and subscription options, free trials, and merchant-of-record details.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
@@ -77,11 +77,24 @@
   .terms dd{color:var(--text-body);font-size:14.5px}
 
   /* footer */
-  footer{border-top:1px solid var(--line);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--text-faint);letter-spacing:.08em}
-  .footer-links{display:flex;gap:32px}
-  .footer-links a{color:var(--text-faint);text-decoration:none;transition:color .2s}
-  .footer-links a:hover{color:var(--text)}
-  @media(max-width:768px){footer{flex-direction:column;gap:16px;padding:24px;text-align:center}.footer-links{flex-wrap:wrap;justify-content:center;gap:16px}}
+  </style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  /* shared footer — identical on every page */
+  footer.gt-footer{font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:16px;font-weight:400;line-height:1.5;color:#e8e8e4;letter-spacing:normal;border-top:1px solid rgba(255,255,255,.07);padding:36px 48px;position:relative;z-index:1;margin:0;width:100%;align-self:stretch;box-sizing:border-box;background:transparent;display:block;text-align:left}
+  .gt-footer *{box-sizing:border-box;margin:0;padding:0}
+  .gt-footer .gt-inner{max-width:1200px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .gt-footer .gt-logo{display:flex;flex-direction:column;gap:4px}
+  .gt-footer .gt-wordmark{font-family:'Space Grotesk',sans-serif;font-size:16px;letter-spacing:-.01em;line-height:1;color:#e8e8e4}
+  .gt-footer .gt-wordmark .name{font-weight:600}
+  .gt-footer .gt-wordmark .dot{color:#ff2a26}
+  .gt-footer .gt-wordmark .ext{font-weight:300;opacity:.78}
+  .gt-footer .gt-brand{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;color:#555550}
+  .gt-footer .gt-links{display:flex;gap:24px}
+  .gt-footer .gt-links a{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:#555550;text-decoration:none;transition:color .2s}
+  .gt-footer .gt-links a:hover{color:#e8e8e4}
+  .gt-footer .gt-copy{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#555550;letter-spacing:.08em}
+  @media(max-width:900px){footer.gt-footer{padding:28px 24px}.gt-footer .gt-inner{flex-direction:column;gap:20px;text-align:center}.gt-footer .gt-logo{align-items:center}.gt-footer .gt-links{flex-wrap:wrap;justify-content:center}}
 </style>
 </head>
 <body>
@@ -91,7 +104,7 @@
     <a href="index.html" class="wordmark"><b>graviton</b><i>.</i><span>tools</span></a>
     <div class="nav-links">
       <a href="index.html#apps">Our Apps</a>
-      <a href="index.html#free-tools">Free Tools</a>
+      <a href="index.html#free">Free Tools</a>
       <a href="about.html">About</a>
       <a href="pricing.html">Pricing</a>
     </div>
@@ -117,7 +130,7 @@
     <div class="models">
       <div class="model">
         <h3>Perpetual (desktop apps)</h3>
-        <p>Pay once and own that version. Activate on up to 4 machines per license. Point releases (e.g. 1.1, 1.2) are free for the life of your license. Major versions (e.g. 2.0) may be offered as a paid upgrade — this is not guaranteed and will be decided at the time of release.</p>
+        <p>Pay once and own that version. Activate on up to 4 machines per license. Point releases (e.g. 1.1, 1.2) are free for the life of your license. Major versions (e.g. 2.0) may be offered as a paid upgrade — not guaranteed, and decided at the time of release.</p>
       </div>
       <div class="model">
         <h3>Subscription (Scope)</h3>
@@ -128,28 +141,9 @@
     <p style="margin-top:20px">Payments are securely processed by <strong>Paddle.com</strong>, our Merchant of Record. Paddle handles checkout, applicable sales tax and VAT, and appears on your statement. See our <a class="inline" href="refund.html">Refund Policy</a> for details on returns, and our <a class="inline" href="terms.html">Terms of Service</a> for the full license agreement.</p>
   </section>
 
-  <!-- DESKTOP APPS -->
+  <!-- APPS — canonical order: Manifold, Scope, Flip, GradeShare, Index, Scaffold -->
   <section>
-    <span class="label">Desktop apps — perpetual license</span>
-
-    <!-- GradeShare -->
-    <div class="product">
-      <div class="product-head">
-        <div>
-          <div class="product-name">GradeShare</div>
-          <div class="product-meta">Desktop · macOS &amp; Windows</div>
-        </div>
-        <div class="product-price">$49 — perpetual</div>
-      </div>
-      <span class="status soon">Coming soon — not yet available</span>
-      <p class="desc">Pull DaVinci Resolve gallery stills into client-ready social layouts and branded contact sheets, with full HDR export — without leaving your grading session.</p>
-      <dl class="terms">
-        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
-        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
-        <dt>Free trial</dt><dd>5 free exports — no license required to evaluate.</dd>
-        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
-      </dl>
-    </div>
+    <span class="label">The apps — perpetual &amp; subscription</span>
 
     <!-- Manifold -->
     <div class="product">
@@ -158,61 +152,19 @@
           <div class="product-name">Manifold</div>
           <div class="product-meta">Desktop · macOS</div>
         </div>
-        <div class="product-price">$129 — perpetual</div>
+        <div class="product-price">$139 — perpetual</div>
       </div>
       <span class="status soon">Coming soon — not yet available</span>
       <p class="desc">A Mac reference player done right: pixel-accurate playback, reference-grade HDR, SDI output to a calibrated display via Blackmagic DeckLink, live-stream monitoring (NDI/SRT/WHEP), deep metadata inspection, and scopes — in one trusted view.</p>
       <dl class="terms">
         <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
-        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license. To move a license to a different machine, contact <a class="inline" href="mailto:support@graviton.tools">support@graviton.tools</a>.</dd>
         <dt>Free trial</dt><dd>7-day trial with full access to all features.</dd>
         <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
       </dl>
     </div>
 
-    <!-- Flip -->
-    <div class="product">
-      <div class="product-head">
-        <div>
-          <div class="product-name">Flip</div>
-          <div class="product-meta">Desktop · macOS &amp; Windows</div>
-        </div>
-        <div class="product-price">$99 — perpetual</div>
-      </div>
-      <span class="status soon">Coming soon — not yet available</span>
-      <p class="desc">Rewrite delivery metadata directly in the container — color tags, HDR10 metadata, channel declarations, timecode, and chapter markers — with no re-encoding and no quality loss.</p>
-      <dl class="terms">
-        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
-        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
-        <dt>Free trial</dt><dd>10 free metadata writes — no license required to evaluate.</dd>
-        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
-      </dl>
-    </div>
-
-    <!-- Scaffold -->
-    <div class="product">
-      <div class="product-head">
-        <div>
-          <div class="product-name">Scaffold</div>
-          <div class="product-meta">Desktop · macOS &amp; Windows</div>
-        </div>
-        <div class="product-price">$29 — perpetual</div>
-      </div>
-      <span class="status soon">Coming soon — not yet available</span>
-      <p class="desc">Build, save, and deploy consistent project folder structures in seconds, sending them straight to DaVinci Resolve and Premiere Pro.</p>
-      <dl class="terms">
-        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
-        <dt>Activation</dt><dd>Up to 4 machines per license.</dd>
-        <dt>Free trial</dt><dd>7-day trial with full access to all features.</dd>
-        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
-      </dl>
-    </div>
-  </section>
-
-  <!-- SCOPE -->
-  <section>
-    <span class="label">Scope — subscription</span>
-
+    <!-- Scope -->
     <div class="product">
       <div class="product-head">
         <div>
@@ -230,6 +182,82 @@
         <dt>Cancellation</dt><dd>Cancel any time; access continues through the end of the billing period.</dd>
       </dl>
     </div>
+
+    <!-- Flip -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">Flip</div>
+          <div class="product-meta">Desktop · macOS &amp; Windows</div>
+        </div>
+        <div class="product-price">$99 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Rewrite delivery metadata directly in the container — color tags, HDR10 metadata, channel declarations, timecode, and chapter markers — with no re-encoding and no quality loss.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license. To move a license to a different machine, contact <a class="inline" href="mailto:support@graviton.tools">support@graviton.tools</a>.</dd>
+        <dt>Free trial</dt><dd>10 free metadata writes — no license required to evaluate.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
+
+    <!-- GradeShare -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">GradeShare</div>
+          <div class="product-meta">Desktop · macOS &amp; Windows</div>
+        </div>
+        <div class="product-price">$59 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Pull DaVinci Resolve gallery stills into client-ready social layouts and branded contact sheets, with full HDR export — without leaving your grading session.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license. To move a license to a different machine, contact <a class="inline" href="mailto:support@graviton.tools">support@graviton.tools</a>.</dd>
+        <dt>Free trial</dt><dd>10 free exports — no license required to evaluate.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
+
+    <!-- Index -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">Index</div>
+          <div class="product-meta">Desktop · macOS &amp; Windows</div>
+        </div>
+        <div class="product-price">$29 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Send professional, cleanly formatted delivery reports to clients. Scans your delivery, pulls the metadata, and generates a branded PDF.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license. To move a license to a different machine, contact <a class="inline" href="mailto:support@graviton.tools">support@graviton.tools</a>.</dd>
+        <dt>Free trial</dt><dd>7-day trial with full access to all features.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
+
+    <!-- Scaffold -->
+    <div class="product">
+      <div class="product-head">
+        <div>
+          <div class="product-name">Scaffold</div>
+          <div class="product-meta">Desktop · macOS &amp; Windows</div>
+        </div>
+        <div class="product-price">$29 — perpetual</div>
+      </div>
+      <span class="status soon">Coming soon — not yet available</span>
+      <p class="desc">Build, save, and deploy consistent project folder structures in seconds, sending them straight to DaVinci Resolve and Premiere Pro.</p>
+      <dl class="terms">
+        <dt>License</dt><dd>One-time purchase. Buy once, use forever.</dd>
+        <dt>Activation</dt><dd>Up to 4 machines per license. To move a license to a different machine, contact <a class="inline" href="mailto:support@graviton.tools">support@graviton.tools</a>.</dd>
+        <dt>Free trial</dt><dd>7-day trial with full access to all features.</dd>
+        <dt>Updates</dt><dd>Point releases free; major versions may be a paid upgrade (see above).</dd>
+      </dl>
+    </div>
   </section>
 
   <!-- COMPANY / MoR note -->
@@ -242,14 +270,21 @@
 
 </main>
 
-<footer>
-  <div>© Graviton.tools 2026 — An Amigo Media LLC Brand</div>
-  <div class="footer-links">
-    <a href="/pricing">Pricing</a>
-    <a href="/privacy">Privacy Policy</a>
-    <a href="/terms">Terms of Service</a>
-    <a href="/refund">Refund Policy</a>
-    <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+<footer class="gt-footer">
+  <div class="gt-inner">
+    <div class="gt-logo">
+      <div class="gt-wordmark"><span class="name">graviton</span><span class="dot">.</span><span class="ext">tools</span></div>
+      <div class="gt-brand">AN AMIGO MEDIA LLC BRAND</div>
+    </div>
+    <div class="gt-links">
+      <a href="about.html">About &amp; Partners</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="mailto:support@graviton.tools">support@graviton.tools</a>
+    </div>
+    <div class="gt-copy">&copy; Graviton.tools 2026</div>
   </div>
 </footer>
 
