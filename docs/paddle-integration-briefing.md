@@ -7,7 +7,7 @@
 ## Context
 
 - **Account:** Amigo Media LLC / graviton.tools Paddle account is **fully verified and live** (business identity, domain, and payouts all approved).
-- **Products:** Already built in the live Paddle catalog (GradeShare, Manifold, Flip, Scaffold = one-time/perpetual; Scope = subscription).
+- **Products:** Already built in the live Paddle catalog (GradeShare, Manifold, Flip, Index, Scaffold = one-time/perpetual; Scope = subscription).
 - **This project's model:** Standalone, **accountless** product checkouts launched directly from graviton.tools. No login, no user account to reconcile a payment against. This is *simpler* than the Scope flow — see "How this differs from Scope" below.
 
 ---
