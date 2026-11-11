@@ -99,7 +99,7 @@ Paddle.Initialize({
 If you *do* use a `successUrl`, it must be a real, existing page on the approved domain.
 
 ### Perpetual vs. subscription products behave differently
-- One-time products (GradeShare, Manifold, Flip, Scaffold) emit **`transaction.completed`** only — no `subscription.*` events.
+- One-time products (GradeShare, Manifold, Flip, Index, Scaffold) emit **`transaction.completed`** only — no `subscription.*` events.
 - Subscription products (Scope) emit the `subscription.*` lifecycle. Don't write post-purchase logic that assumes subscription events for a one-time product.
 
 ### Fulfillment / license delivery — the big architectural decision
