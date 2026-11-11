@@ -78,6 +78,9 @@
   .checkout:disabled{background:var(--surface-3);color:var(--text-faint);cursor:not-allowed;filter:none}
   @media(max-width:560px){.summary{padding:18px 16px}.checkout{width:100%}}
 
+  .scope-note{margin-top:28px;text-align:center;font-family:var(--body);color:var(--text-dim);font-size:15px}
+  .scope-note a{color:var(--text-body);text-decoration:underline;text-underline-offset:2px}
+  .scope-note a:hover{color:var(--text)}
   .notice{padding:28px;border:1px solid var(--line);border-radius:16px;background:var(--surface-1);color:var(--text-body);font-size:17px}
   [hidden]{display:none !important}
 </style>
@@ -131,6 +134,7 @@
       </div>
       <button class="checkout" id="checkout" type="button" disabled>Checkout</button>
     </div>
+    <p class="scope-note">Looking for Scope? Sign up for an account at <a href="https://tryscope.studio" target="_blank" rel="noopener">tryscope.studio</a>. Plans are purchased inside the app.</p>
   </div>
 
   <p class="notice" id="invoice" hidden>Complete your payment. Checkout will open automatically.</p>
