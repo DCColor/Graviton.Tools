@@ -33,11 +33,13 @@ Run from the project root (`Graviton-Tools/`).
 wrangler pages deploy redesign --project-name graviton-tools --branch staging
 
 # PRODUCTION — publish the live site at graviton.tools
-wrangler pages deploy web --project-name graviton-tools
+wrangler pages deploy web --project-name graviton-tools --branch main
 ```
 
 How it works: the **folder** decides *which files* ship; the **`--branch`** flag
-decides *which environment*. No flag = production. `--branch staging` = an isolated
+decides *which environment*. `--branch main` = production (main is the Pages production
+branch and must be passed explicitly: omitting `--branch` produced preview-only deploys
+in Oct 2026). `--branch staging` = an isolated
 preview with a stable URL that never changes as you redeploy. Production is never
 touched by a staging deploy.
 
