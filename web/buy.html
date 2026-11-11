@@ -161,17 +161,20 @@
   const PADDLE_CLIENT_TOKEN = "live_REPLACE_ME";
 
   // Paid desktop apps in tier order. Scope is excluded: it checks out on tryscope.studio.
-  // TODO: replace every PLACEHOLDER priceId with the LIVE pri_ ID from the Paddle live catalog.
+  // Entries whose priceId starts with "pri_PLACEHOLDER" are hidden and never sent to checkout.
   const PRODUCTS = [
-    { id: "manifold",   name: "Manifold",   price: 139, icon: "assets/manifold-128.png",        priceId: "pri_PLACEHOLDER_MANIFOLD" },
-    { id: "flip",       name: "Flip",       price: 99,  icon: "assets/flipicon_128x128.png",    priceId: "pri_PLACEHOLDER_FLIP" },
-    { id: "gradeshare", name: "GradeShare", price: 59,  icon: "assets/gradeshare_128x128.png",  priceId: "pri_PLACEHOLDER_GRADESHARE" },
+    { id: "manifold",   name: "Manifold",   price: 139, icon: "assets/manifold-128.png",        priceId: "pri_01kxa4vcrcmdzkagbsv7rskn61" },
+    { id: "flip",       name: "Flip",       price: 99,  icon: "assets/flipicon_128x128.png",    priceId: "pri_01kxa4wktcej2s5dh5d10984hb" },
+    { id: "gradeshare", name: "GradeShare", price: 59,  icon: "assets/gradeshare_128x128.png",  priceId: "pri_01kxa4rpb8x6v3prsfmpa9b0za" },
     { id: "index",      name: "Index",      price: 29,  icon: "assets/indexicon_128x128.png",   priceId: "pri_PLACEHOLDER_INDEX" },
-    { id: "scaffold",   name: "Scaffold",   price: 29,  icon: "assets/scaffold_128x128.png",    priceId: "pri_PLACEHOLDER_SCAFFOLD" },
+    { id: "scaffold",   name: "Scaffold",   price: 29,  icon: "assets/scaffold_128x128.png",    priceId: "pri_01kxa4tenn89ckm9m51yjfmrsx" },
   ];
 
+  // Only products with a real live price ID are rendered or checked out.
+  const AVAILABLE = PRODUCTS.filter(p => !p.priceId.startsWith("pri_PLACEHOLDER"));
+
   const MIN = 0, MAX = 50;
-  const qty = Object.fromEntries(PRODUCTS.map(p => [p.id, 0]));
+  const qty = Object.fromEntries(AVAILABLE.map(p => [p.id, 0]));
   const fmt = n => "$" + n.toLocaleString("en-US");
   const $ = id => document.getElementById(id);
 
@@ -182,7 +185,7 @@
   }
 
   const list = $("list");
-  for (const p of PRODUCTS) {
+  for (const p of AVAILABLE) {
     const li = document.createElement("li");
     li.className = "row";
     li.innerHTML =
@@ -213,9 +216,9 @@
   }
 
   function update() {
-    const total = PRODUCTS.reduce((s, p) => s + qty[p.id] * p.price, 0);
+    const total = AVAILABLE.reduce((s, p) => s + qty[p.id] * p.price, 0);
     $("subtotal").textContent = fmt(total);
-    $("checkout").disabled = PRODUCTS.every(p => qty[p.id] === 0);
+    $("checkout").disabled = AVAILABLE.every(p => qty[p.id] === 0);
   }
 
   Paddle.Initialize({
@@ -230,7 +233,7 @@
   });
 
   $("checkout").addEventListener("click", () => {
-    const items = PRODUCTS
+    const items = AVAILABLE
       .filter(p => qty[p.id] > 0)
       .map(p => ({ priceId: p.priceId, quantity: qty[p.id] }));
     if (!items.length) return;

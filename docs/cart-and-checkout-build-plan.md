@@ -101,7 +101,7 @@ cart reads — e.g. `web/data/products.json` (or a small JS module):
 
 ```
 {
-  "gradeshare": { "name": "GradeShare", "price": "$49", "priceId": "pri_live_...",
+  "gradeshare": { "name": "GradeShare", "price": "$59", "priceId": "pri_live_...",
                   "icon": "assets/gradeshare_128x128.png", "type": "perpetual" },
   "flip":       { "name": "Flip",       "price": "$99", "priceId": "pri_live_...", ... },
   ...
